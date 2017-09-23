@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+ {% block content %}
+     <div class="ui vertical stripe segment">
+         <div class="ui middle aligned stackable grid container">
+             <div class="row">
+                 <div class="sixteen wide column">
+                     <h3 class="ui header">Bonjour et bienvenue sur le site du Seiken Karaté d’Hossegor.</h3>
+                     <p>Dans notre club, vous pouvez venir suivre :
+                     <ul class="ui list">
+                         <li>des cours collectifs de Karaté Contact, Full Contact, et de Self Défense avec Gérald
+                             :
+                             <ul>
+                                 <li>1<sup>er</sup> dan Karaté Shotokan</li>
+                                 <li>3<sup>ème</sup> dan Karaté Contact</li>
+                                 <li>Instructeur Karaté Défense/Krav-Maga</li>
+                             </ul>
+                         </li>
+                         <li>des cours de Body Karaté (Fitness en musique) avec Corinne animatrice certifiée.
+                         </li>
+                         <li>des cours particuliers (coaching personnalisé) en Training-Boxing-défense (TBD).
+                         </li>
+                     </ul>
+                     <p>Club affilié à la FFKDA.
+
+                         Bonne visite et à très bientôt !</p>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="center aligned column">
+                     <a class="ui button" href="{{ path('club') }}">En savoir plus</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="ui vertical stripe quote segment">
+         <div class="ui equal width stackable internally celled grid">
+             <div class="center aligned row">
+                 <div class="column padding-sm">
+                     <img src="{{ asset('images/karate.jpg') }}" class="ui centered fluid image" alt="Karaté">
+                     <h3>Karaté Contact</h3>
+                     <p>Art martial né du croisement entre le karaté traditionnel
+                         venant du Japon et de la boxe américaine.
+                         Celui-ci permet une approche où les coups sont portés suivant le niveau de pratique. Une
+                         approche
+                         loisir en fait un sport complet alliant techniques de
+                         pied poing, travail d’enchaînement codifié, et techniques de self-défense.
+                     </p>
+                     <br/>
+                     <div class="ui bottom left attached label"><a href="{{ path('kc.jeune-enfant') }}">Jeune Enfant</a>
+                     </div>
+                     <div class="ui bottom attached label"><a href="{{ path('kc.enfant') }}">Enfant</a></div>
+                     <div class="ui bottom right attached label"><a href="{{ path('kc.ado-adulte') }}">Ado et Adulte</a>
+                     </div>
+                 </div>
+                 <div class="column padding-sm">
+                     <img src="{{ asset('images/body-karate.jpg') }}" class="ui centered fluid image" alt="Body Karaté">
+                     <h3>Body Karaté</h3>
+                     <p>Le Body Karaté est une séance de cardio-training en musique, du même style que le
+                         Body Combat ou le Body Attack.
+                         C’est une discipline qui allie techniques de karaté et chorégraphies dynamiques,
+                         exécutées
+                         sur
+                         des musiques modernes et rythmées.
+                         On travaille le cardio, l’endurance et le renforcement musculaire dans la bonne
+                         humeur.</p>
+                     <br/>
+                     <div class="ui bottom right attached label"><a href="{{ path('body-karate') }}">En savoir plus</a>
+                     </div>
+                 </div>
+                 <div class="column padding-sm">
+                     <img src="{{ asset('images/coaching.jpg') }}" class="ui centered fluid image" alt="Coaching">
+                     <h3>Coaching</h3>
+                     <p>Prise en charge sur mesure avec un programme d’entraînement élaboré pour vous, visant une
+                         amélioration sur tous les plans (forme,
+                         santé, stress, confiance en soi).
+                         Les séances comprennent de la préparation physique,du travail pied poing, du Self
+                         Défense et
+                         du
+                         stretching.</p>
+                     <br/>
+                     <div class="ui bottom right attached label"><a href="{{ path('coaching') }}">En savoir plus</a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ {% endblock %}

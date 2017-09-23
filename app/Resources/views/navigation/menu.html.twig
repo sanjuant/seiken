@@ -1,0 +1,19 @@
+<a class="{% if 'accueil' in app.request.pathInfo %}active{% endif %} item" href="{{ path('accueil') }}">Accueil</a>
+{#<!--<a class="item" href="news.html">News</a>-->#}
+<div class="ui dropdown {% if 'karate-contact' in app.request.pathInfo %}select{% endif %} item">
+    Karaté Contact <i class="dropdown icon"></i>
+    <div class="menu">
+        <a class="item" href="{{ path('kc.jeune-enfant') }}">Jeune Enfant</a>
+        <a class="item" href="{{ path('kc.enfant') }}">Enfant</a>
+        <a class="item" href="{{ path('kc.ado-adulte') }}">Ado et Adulte</a>
+    </div>
+</div>
+<a class="{% if 'body-karate' in app.request.pathInfo %}active{% endif %} item" href="{{ path('body-karate') }}">Body
+    Karaté</a>
+<a class="{% if 'coaching' in app.request.pathInfo %}active{% endif %} item" href="{{ path('coaching') }}">Coaching</a>
+{#<!--<a class="item" href="stage.html">Stage</a>-->#}
+<a class="{% if 'club' in app.request.pathInfo %}active{% endif %} item" href="{{ path('club') }}">Le Club</a>
+<a class="{% if 'boutique' in app.request.pathInfo %}active{% endif %} item" href="{{ path('boutique') }}">Boutique</a>
+<div class="right item">
+    <a class="ui inverted button" href="{{ path('contact') }}">Contact</a>
+</div>
