@@ -1,16 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sorrow
- * Date: 24/09/2017
- * Time: 23:13
- */
 
 namespace AppBundle\Entity;
 
 
 use AppBundle\Traits\Id;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -22,16 +17,23 @@ class Comment
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(min="2", max="60")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     * @Assert\Length(max="255")
      */
     private $email;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min="10")
      */
     private $message;
 
@@ -39,6 +41,11 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Set name

@@ -18,7 +18,6 @@ class CommentType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('message')
-            ->add('date')
             ->add('submit', SubmitType::class)
         ;
     }

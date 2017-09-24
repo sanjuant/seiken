@@ -4,7 +4,12 @@
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable text container">
             {% include 'AppBundle:News:post.html.twig' %}
+            <div class="ui horizontal divider">
+                Laissez un commentaire
+            </div>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
-
