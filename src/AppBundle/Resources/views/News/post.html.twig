@@ -14,7 +14,7 @@
 
     {#<img class="ui small left floated rounded image" src="./images/news1.jpg">#}
     <p>{{ post.content }}</p>
-    {% if app.request.pathInfo is same as('/accueil') or app.request.pathInfo is same as('/news') %}
+    {% if app.request.pathInfo is not same as('/news/' ~ post.id) %}
         <a href="{{ path('news.post', {'id': post.id}) }}" class="ui large button">Lire la suite</a>
     {% endif %}
 </div>
