@@ -1,0 +1,20 @@
+<div class="row">
+    <h3 class="ui header">
+        <a href="{{ path('news.post', {'id': post.id}) }}" class="h3 title">{{ post.title }}</a>
+        <div class="sub header">
+        <span class="post-auhor-date">{{ post.author }}, <a
+                    href="{{ path('news.post', {'id': post.id}) }}">le {{ post.date|localizeddate("medium", "none", null, null, "cccc d LLLL yyyy")|title }}</a></span>
+            -
+            <span class="post-comment"><a href="{{ path('news.post', {'id': post.id}) }}#comments"><i
+                            class="comment outline icon"></i> 0</a></span>
+            -
+            <span class="post-category"><a href="#">Stage</a></span>
+        </div>
+    </h3>
+
+    {#<img class="ui small left floated rounded image" src="./images/news1.jpg">#}
+    <p>{{ post.content }}</p>
+    {% if app.request.pathInfo is same as('/accueil') or app.request.pathInfo is same as('/news') %}
+        <a href="{{ path('news.post', {'id': post.id}) }}" class="ui large button">Lire la suite</a>
+    {% endif %}
+</div>

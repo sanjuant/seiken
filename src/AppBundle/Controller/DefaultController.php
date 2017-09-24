@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,14 +24,20 @@ class DefaultController extends Controller
      */
     public function accueilAction()
     {
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findBy(array(), array(
+            'date' => 'DESC'
+        ))
+        ;
+
         return $this->render('@App/Default/accueil.html.twig', array(
+            'posts' => $posts,
             'img' => 'assets/img/accueil.jpg',
             'position' => 'bottom'
         ));
     }
 
     /**
-     * @Route("body-karate", name="body-karate")
+     * @Route("/body-karate", name="body-karate")
      * @Method("GET")
      */
     public function bodyKarateAction()
@@ -42,7 +49,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("coaching", name="coaching")
+     * @Route("/coaching", name="coaching")
      * @Method("GET")
      */
     public function coachingAction()
@@ -54,7 +61,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("club", name="club")
+     * @Route("/club", name="club")
      * @Method("GET")
      */
     public function clubAction()
@@ -66,7 +73,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("boutique", name="boutique")
+     * @Route("/boutique", name="boutique")
      * @Method("GET")
      */
     public function boutiqueAction()
@@ -78,7 +85,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("contact", name="contact")
+     * @Route("/contact", name="contact")
      */
     public function contactAction()
     {

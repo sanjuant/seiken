@@ -89,49 +89,11 @@
 
      <div class="ui vertical stripe segment">
          <div class="ui middle aligned stackable text container">
-             <div class="row">
-                 <h3 class="ui header">
-                     Stage avec Dominique Valéra
-                     <div class="sub header">Publiée le Mercredi 5 Juillet 2017</div>
-                 </h3>
-
-                 {#<img class="ui small left floated rounded image" src="./images/news1.jpg">#}
-                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi modi quod rem repudiandae sit
-                     voluptatem!
-                     Consectetur delectus ex excepturi impedit laboriosam magni optio qui veniam voluptatum. Consequatur
-                     doloremque quibusdam totam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-                     architecto
-                     commodi cumque deleniti doloremque excepturi harum labore maxime modi molestiae molestias, nemo
-                     nesciunt
-                     pariatur perferendis perspiciatis quo reprehenderit, soluta vel.</p>
-                 <a class="ui large button">Lire la suite</a>
-             </div>
-             <div class="ui section divider"></div>
-             <div class="row">
-                 <h3 class="ui header">
-                     Vente d'équipements
-                     <div class="sub header">Publiée le Samedi 17 Juin 2017</div>
-                 </h3>
-                 {#<img class="ui small right floated rounded image" src="./images/news2.jpg">#}
-                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores beatae consequatur distinctio
-                     dolor
-                     facere, fugit in itaque magni nam nihil odio omnis pariatur porro possimus quisquam, sint sunt
-                     temporibus voluptate!</p>
-                 <a class="ui large button">Je suis intéressé</a>
-             </div>
-             <div class="ui section divider"></div>
-             <div class="row">
-                 <h3 class="ui header">
-                     Vente d'équipements
-                     <div class="sub header">Publiée le Samedi 17 Juin 2017</div>
-                 </h3>
-                 {#<img class="ui small right floated rounded image" src="./images/news2.jpg">#}
-                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores beatae consequatur distinctio
-                     dolor
-                     facere, fugit in itaque magni nam nihil odio omnis pariatur porro possimus quisquam, sint sunt
-                     temporibus voluptate!</p>
-                 <a class="ui large button">Je suis intéressé</a>
-             </div>
+             {% for post in posts %}
+                 {% include '@App/News/post.html.twig' %}
+                 {% if not loop.last %}
+                     <div class="ui section divider"></div>{% endif %}
+             {% endfor %}
          </div>
      </div>
  {% endblock %}
