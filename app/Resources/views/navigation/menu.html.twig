@@ -1,5 +1,5 @@
 <a class="{% if 'accueil' in app.request.pathInfo %}active{% endif %} item" href="{{ path('accueil') }}">Accueil</a>
-{#<!--<a class="item" href="news.html">News</a>-->#}
+<a class="{% if 'news' in app.request.pathInfo %}active{% endif %} item" href="{{ path('news') }}">News</a>
 <div class="ui dropdown {% if 'karate-contact' in app.request.pathInfo %}select{% endif %} item">
     Karaté Contact <i class="dropdown icon"></i>
     <div class="menu">
