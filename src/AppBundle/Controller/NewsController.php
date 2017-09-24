@@ -6,10 +6,13 @@ use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @Route("/news")
+ */
 class NewsController extends Controller
 {
     /**
-     * @Route("/news", name="news")
+     * @Route("", name="news")
      */
     public function indexAction()
     {
@@ -24,7 +27,7 @@ class NewsController extends Controller
     }
 
     /**
-     * @Route("/news/{id}", name="news.post")
+     * @Route("/{id}", name="news.post")
      * @param Post $post
      * @return \Symfony\Component\HttpFoundation\Response
      */
