@@ -6,9 +6,9 @@
                     href="{{ path('news.post', {'id': post.id}) }}">le {{ post.date|localizeddate("medium", "none", null, null, "cccc d LLLL yyyy")|title }}</a></span>
             -
             <span class="post-comment"><a href="{{ path('news.post', {'id': post.id}) }}#comments"><i
-                            class="comment outline icon"></i> 0</a></span>
+                            class="comment outline icon"></i> {{ post.comments|length }}</a></span>
             -
-            <span class="post-category"><a href="#">Stage</a></span>
+            <span class="post-category"><i class="tag icon"></i><a href="#">Stage</a></span>
         </div>
     </h3>
 

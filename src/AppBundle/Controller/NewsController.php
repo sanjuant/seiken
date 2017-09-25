@@ -19,7 +19,8 @@ class NewsController extends Controller
      */
     public function indexAction()
     {
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findBy(array(), array('date' => 'DESC'));
+
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findAllWithComments();
 
 
         return $this->render('@App/News/news.html.twig', array(
@@ -31,18 +32,29 @@ class NewsController extends Controller
 
     /**
      * @Route("/{id}", name="news.post")
-     * @param Post $post
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction(Post $post, Request $request)
+    public function viewAction($id, Request $request)
     {
+        $post = $this->getDoctrine()->getRepository(Post::class)->findOneWithComments($id);
+
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            return $this->redirectToRoute('news.post', array('id' => $id));
+        }
+
         return $this->render('@App/News/view.html.twig', array(
-            'form' => $form->createView(),
             'post' => $post,
+            'form' => $form->createView(),
             'img' => 'assets/img/news.jpg',
             'position' => 'center'
         ));

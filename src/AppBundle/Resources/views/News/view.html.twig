@@ -10,6 +10,20 @@
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
+            {% if post.comments is not empty %}
+                <div class="ui section divider" id="comments"></div>
+                {% for comment in post.comments %}
+                    <p>{{ comment.message|e }}</p>
+                    <p>
+                        <small>
+                            Posté par {{ comment.name|e }},
+                            le {{ comment.date|localizeddate("medium", "none", null, null, "d LLLL yyyy à hh'h'mm") }}
+                        </small>
+                    </p>
+                    {% if not loop.last %}
+                        <div class="ui section divider"></div>{% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

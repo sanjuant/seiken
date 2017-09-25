@@ -7,7 +7,7 @@ use AppBundle\Traits\Id;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\Entity()
  * @ORM\Table(name="posts")
  */
 class Post
@@ -33,4 +33,9 @@ class Post
      * @ORM\Column(type="text")
      */
     private $content;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="post")
+     */
+    private $comments;
 }

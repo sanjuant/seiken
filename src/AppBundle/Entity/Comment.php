@@ -33,7 +33,7 @@ class Comment
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\Length(min="10")
+     * @Assert\Length(min="10", max="700")
      */
     private $message;
 
@@ -42,6 +42,15 @@ class Comment
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comments")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $post;
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->date = new \DateTime();
@@ -151,5 +160,29 @@ class Comment
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Comment
+     */
+    public function setPost(\AppBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \AppBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }
