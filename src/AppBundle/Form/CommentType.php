@@ -17,7 +17,9 @@ class CommentType extends AbstractType
         $builder
             ->add('name')
             ->add('email')
-            ->add('message')
+            ->add('message', null, array(
+                'attr' => array('rows' => 2)
+            ))
             ->add('submit', SubmitType::class)
         ;
     }

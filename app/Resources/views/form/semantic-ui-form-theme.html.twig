@@ -138,7 +138,7 @@
 {# Rows #}
 
 {% block form_row -%}
-    <div class="field{% if not valid %} error{% endif %}">
+    <div class="field{% if not valid %} error{% endif %} {% if required -%} required{%- endif -%}">
         {{- form_label(form) -}}
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
