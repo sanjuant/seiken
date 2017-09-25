@@ -142,6 +142,10 @@ a.h3.title:hover {
 }
 
 /* Styles for semantic-ui elements */
+#appbundle_comment_date select {
+    width: auto;
+}
+
 .ui.link.cards {
     width: 100%;
 }
