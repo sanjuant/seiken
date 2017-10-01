@@ -44,7 +44,7 @@
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" {% if "category" in app.request.pathInfo %}class="active"{% endif %}><a
-                            href="#">Catégories</a></li>
+                            href="{{ path("admin.categories") }}">Catégories</a></li>
                 <li role="presentation" {% if "post" in app.request.pathInfo %}class="active"{% endif %}><a
                             href="{{ path("admin.posts") }}">Posts</a></li>
                 <li role="presentation" {% if "comment" in app.request.pathInfo %}class="active"{% endif %}><a

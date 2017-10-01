@@ -1,0 +1,51 @@
+{% extends "::base-admin.html.twig" %}
+
+{% block content %}
+
+    <h3>Liste des categories
+        <small><a class="btn btn-sm btn-info pull-right" href="{{ path('admin.category.add') }}"><i
+                        class="glyphicon glyphicon-plus"></i> Ajouter</a></small>
+    </h3>
+    <hr/>
+
+    <table id="table_id" class="table table-striped display">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Label</th>
+            <th></th>
+        </tr>
+        </thead>
+        {%- if categories is not null %}
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.label }}</td>
+                    <td>
+                        <div class="btn-group pull-right" role="group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li><a href="{{ path("admin.category.edit", {"id": category.id}) }}"><i
+                                                class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a></li>
+                                <li><a href="{{ path("admin.category.delete", {"id": category.id}) }}"><i
+                                                class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    {% include 'parts/datatables.html.twig' %}
+{% endblock %}

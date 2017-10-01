@@ -8,7 +8,7 @@
             <span class="post-comment"><a href="{{ path('news.post', {'id': post.id}) }}#comments"><i
                             class="comment outline icon"></i> {{ post.comments|length }}</a></span>
             -
-            <span class="post-category"><i class="tag icon"></i><a href="#">Stage</a></span>
+            <span class="post-category"><i class="tag icon"></i><a href="#">{{ post.category }}</a></span>
         </div>
     </h3>
 
