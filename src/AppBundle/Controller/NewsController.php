@@ -41,6 +41,8 @@ class NewsController extends Controller
         $post = $this->getDoctrine()->getRepository(Post::class)->findOneWithComments($id);
 
         $comment = new Comment();
+        $comment->setPost($post);
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
