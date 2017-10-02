@@ -15,7 +15,6 @@
                 {% for comment in post.comments %}
                     <p>{{ comment.message|e }}</p>
                     <p>
-                        {{ dump(comment.date) }}
                         <small>
                             Posté par {{ comment.name|e }},
                             le {{ comment.date|localizeddate("medium", "none", null, null, "d LLLL yyyy à HH'h'mm") }}

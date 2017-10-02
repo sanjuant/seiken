@@ -1,30 +1,23 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Category;
 
-
+use AppBundle\Entity\CategoryInterface;
 use AppBundle\Traits\Id;
+use AppBundle\Traits\Label;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
- * @UniqueEntity("label")
- * @ORM\Table(name="categories")
+ * @ORM\Table(name="categories_post")
  */
-class Category
+class Post implements CategoryInterface
 {
     use Id;
 
-    /**
-     * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(min="2", max="25")
-     */
-    private $label;
+    use Label;
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->label;
     }
@@ -34,9 +27,9 @@ class Category
      *
      * @param string $label
      *
-     * @return Category
+     * @return CategoryInterface
      */
-    public function setLabel($label)
+    public function setLabel($label): CategoryInterface
     {
         $this->label = $label;
 

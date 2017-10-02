@@ -40,7 +40,7 @@ class Post
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category\Post")
      * @ORM\JoinColumn(onDelete="RESTRICT")
      */
     private $category;
@@ -196,11 +196,11 @@ class Post
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param \AppBundle\Entity\Category\Post $category
      *
      * @return Post
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCategory(\AppBundle\Entity\Category\Post $category = null)
     {
         $this->category = $category;
 
@@ -210,7 +210,7 @@ class Post
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category
+     * @return \AppBundle\Entity\Category\Post
      */
     public function getCategory()
     {
