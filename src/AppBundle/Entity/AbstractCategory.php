@@ -3,9 +3,8 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\Id;
-use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Traits\Label;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @UniqueEntity("label")
@@ -14,12 +13,7 @@ abstract class AbstractCategory
 {
     use Id;
 
-    /**
-     * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(min="2", max="25")
-     */
-    protected $label;
+    use Label;
 
     public function __toString(): string
     {

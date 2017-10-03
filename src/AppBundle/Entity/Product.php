@@ -21,7 +21,7 @@ class Product implements CategorizableInterface
     private $name;
 
     /**
-     * @ORM\Column(type="text)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -34,6 +34,12 @@ class Product implements CategorizableInterface
      * @ORM\Column(type="string", length=20)
      */
     private $ref;
+
+    // Mettre la relation ManyToOne
+    /**
+     * @ORM\ManyToOne(targetEntity="Type", inversedBy="products")
+     */
+    private $type;
 
 
     public function setCategory(AbstractCategory $category)
