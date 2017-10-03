@@ -43,19 +43,19 @@
         <hr/>
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" {% if "admin/post/categor" in app.request.pathInfo %}class="active"{% endif %}>
+                <li role="presentation" {% if 'post.category' is same as(module) %}class="active"{% endif %}>
                     <a href="{{ path("admin.post.categories") }}">Catégories Post</a>
                 </li>
-                <li role="presentation" {% if "admin/product/categor" in app.request.pathInfo %}class="active"{% endif %}>
+                <li role="presentation" {% if 'product.category' is same as(module) %}class="active"{% endif %}>
                     <a href="{{ path("admin.product.categories") }}">Catégories Produit</a>
                 </li>
-                <li role="presentation" {% if "admin/post" in app.request.pathInfo %}class="active"{% endif %}>
+                <li role="presentation" {% if 'post' is same as(module) %}class="active"{% endif %}>
                     <a href="{{ path("admin.posts") }}">Posts</a>
                 </li>
-                <li role="presentation" {% if "admin/product" in app.request.pathInfo %}class="active"{% endif %}>
+                <li role="presentation" {% if 'product' is same as(module) %}class="active"{% endif %}>
                     <a href="{#{{ path("admin.products") }}#}">Produits</a>
                 </li>
-                <li role="presentation" {% if "admin/comment" in app.request.pathInfo %}class="active"{% endif %}>
+                <li role="presentation" {% if 'comment' is same as(module) %}class="active"{% endif %}>
                     <a href="#">Commentaires</a>
                 </li>
             </ul>

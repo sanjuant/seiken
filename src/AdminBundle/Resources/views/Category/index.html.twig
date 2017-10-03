@@ -1,15 +1,10 @@
 {% extends "::base-admin.html.twig" %}
 
-{% if app.request.get('_route') is same as('admin.post.categories') %}
-    {% set entity = 'post' %}
-{% elseif app.request.get('_route') is same as('admin.product.categories') %}
-    {% set entity = 'product' %}
-{% endif %}
-
 {% block content %}
+    {{ dump(app) }}
     <h3>Liste des categories
         <small>
-            <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.' ~ entity ~'.category.add') }}">
+            <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.' ~ module ~'.add') }}">
                 <i class="glyphicon glyphicon-plus"></i> Ajouter
             </a>
         </small>
@@ -39,11 +34,11 @@
                             </button>
                             <ul class="dropdown-menu ">
                                 <li>
-                                    <a href="{{ path('admin.' ~ entity ~'.category.edit', {"id": category.id}) }}">
+                                    <a href="{{ path('admin.' ~ module ~'.edit', {"id": category.id}) }}">
                                         <i class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('admin.' ~ entity ~'.category.delete', {"id": category.id}) }}">
+                                    <a href="{{ path('admin.' ~ module ~'.delete', {"id": category.id}) }}">
                                         <i class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a>
                                 </li>
                             </ul>
