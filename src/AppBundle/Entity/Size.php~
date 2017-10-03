@@ -1,0 +1,29 @@
+<?php
+
+namespace AppBundle\Entity;
+
+
+use AppBundle\Traits\Id;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="sizes")
+ */
+class Size
+{
+    use Id;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="1", max="25")
+     */
+    private $measurement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Type", inversedBy="sizes")
+     */
+    private $type;
+}
