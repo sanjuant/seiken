@@ -1,0 +1,61 @@
+{% extends "::base-admin.html.twig" %}
+
+{% block content %}
+
+    <h3>Liste des products
+        <small><a class="btn btn-sm btn-info pull-right" href="{{ path('admin.product.add') }}"><i
+                        class="glyphicon glyphicon-plus"></i> Ajouter</a></small>
+    </h3>
+    <hr/>
+
+    <table id="table_id" class="table table-striped display">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Ref</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        {%- if products is not null %}
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.name }}</td>
+                    <td>{{ post.description }}</td>
+                    <td>{{ post.ref }}</td>
+                    <td>{{ post.category }}</td>
+                    <td>{{ post.type }}</td>
+                    <td>{{ post.price }}</td>
+                    <td>
+                        <div class="btn-group pull-right" role="group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li><a href="{{ path("admin.post.edit", {"id": post.id}) }}"><i
+                                                class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a></li>
+                                <li><a href="{{ path("admin.post.delete", {"id": post.id}) }}"><i
+                                                class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    {% include 'parts/datatables.html.twig' %}
+{% endblock %}

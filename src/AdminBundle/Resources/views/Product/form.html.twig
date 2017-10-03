@@ -1,0 +1,15 @@
+{% extends '::base-admin.html.twig' %}
+
+{% block content %}
+    {% if form.vars.data.id is null %}
+        <h3>Ajouter un post</h3>
+    {% else %}
+        <h3>Editer un post</h3>
+    {% endif %}
+
+    <hr/>
+
+    {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
