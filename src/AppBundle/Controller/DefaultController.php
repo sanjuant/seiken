@@ -24,9 +24,12 @@ class DefaultController extends Controller
      */
     public function accueilAction()
     {
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findBy(array(), array(
-            'date' => 'DESC'
-        ))
+        $posts = $this
+            ->getDoctrine()
+            ->getRepository(Post::class)
+            ->findBy(array(), array(
+                'date' => 'DESC'
+            ))
         ;
 
         return $this->render('@App/Default/accueil.html.twig', array(

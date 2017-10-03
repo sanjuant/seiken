@@ -1,31 +1,29 @@
 <?php
 
-namespace AdminBundle\Controller\Category;
+namespace AdminBundle\Controller\Product;
 
-use AdminBundle\Controller\CategoryControllerInterface;
-use AdminBundle\Form\Category\ProductType as CategoryProductType;
-use AppBundle\Entity\Category\Product as CategoryProduct;
-use AppBundle\Entity\CategoryInterface;
+use AdminBundle\Form\Product\CategoryType;
+use AppBundle\Entity\Product\Category;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/admin/category")
+ * @Route("/admin/product")
  */
-class ProductController extends Controller implements CategoryControllerInterface
+class CategoryController extends Controller
 {
 
     /**
-     * @Route("/product", name="admin.category.product")
+     * @Route("/categories", name="admin.product.categories")
      */
     public function indexAction(): Response
     {
-        // SELECT * FROM categories_post;
+        // SELECT * FROM categories_product;
         $categories = $this
             ->getDoctrine()
-            ->getRepository(CategoryProduct::class)
+            ->getRepository(Category::class)
             ->findAll()
         ;
 
@@ -35,13 +33,13 @@ class ProductController extends Controller implements CategoryControllerInterfac
     }
 
     /**
-     * @Route("/product/add", name="admin.category.product.add")
+     * @Route("/category/add", name="admin.product.category.add")
      */
     public function addAction(Request $request)
     {
-        $product = new CategoryProduct();
+        $product = new Category();
 
-        $form = $this->createForm(CategoryProductType::class, $product);
+        $form = $this->createForm(CategoryType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,7 +47,7 @@ class ProductController extends Controller implements CategoryControllerInterfac
             $em->persist($form->getData());
             $em->flush();
 
-            return $this->redirectToRoute('admin.category.product');
+            return $this->redirectToRoute('admin.product.categories');
         }
 
         return $this->render('@Admin/Category/form.html.twig', array(
@@ -58,17 +56,17 @@ class ProductController extends Controller implements CategoryControllerInterfac
     }
 
     /**
-     * @Route("/product/edit/{id}", name="admin.category.product.edit")
+     * @Route("/category/edit/{id}", name="admin.product.category.edit")
      */
-    public function editAction(CategoryInterface $product, Request $request)
+    public function editAction(Category $product, Request $request)
     {
-        $form = $this->createForm(CategoryProductType::class, $product);
+        $form = $this->createForm(CategoryType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin.category.product');
+            return $this->redirectToRoute('admin.product.categories');
         }
 
         return $this->render('@Admin/Category/form.html.twig', array(
@@ -77,14 +75,14 @@ class ProductController extends Controller implements CategoryControllerInterfac
     }
 
     /**
-     * @Route("/product/delete/{id}", name="admin.category.product.delete")
+     * @Route("/category/delete/{id}", name="admin.product.category.delete")
      */
-    public function deleteAction(CategoryInterface $product)
+    public function deleteAction(Category $product)
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($product);
         $em->flush();
 
-        return $this->redirectToRoute('admin.category.product');
+        return $this->redirectToRoute('admin.product.categories');
     }
 }

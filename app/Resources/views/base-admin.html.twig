@@ -43,18 +43,21 @@
         <hr/>
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" {% if "admin/category/post" in app.request.pathInfo %}class="active"{% endif %}>
-                    <a
-                            href="{{ path("admin.category.post") }}">Catégories Post</a></li>
-                <li role="presentation"
-                    {% if "admin/category/product" in app.request.pathInfo %}class="active"{% endif %}>
-                    <a href="{{ path("admin.category.product") }}">Catégories Product</a></li>
-                <li role="presentation" {% if "admin/post" in app.request.pathInfo %}class="active"{% endif %}><a
-                            href="{{ path("admin.posts") }}">Posts</a></li>
-                <li role="presentation" {% if "admin/comment" in app.request.pathInfo %}class="active"{% endif %}><a
-                            href="#">Commentaires</a></li>
-                <li role="presentation" {% if "user" in app.request.pathInfo %}class="active"{% endif %}><a
-                            href="#">Utilisateurs</a></li>
+                <li role="presentation" {% if "admin/post/categor" in app.request.pathInfo %}class="active"{% endif %}>
+                    <a href="{{ path("admin.post.categories") }}">Catégories Post</a>
+                </li>
+                <li role="presentation" {% if "admin/product/categor" in app.request.pathInfo %}class="active"{% endif %}>
+                    <a href="{{ path("admin.product.categories") }}">Catégories Produit</a>
+                </li>
+                <li role="presentation" {% if "admin/post" in app.request.pathInfo %}class="active"{% endif %}>
+                    <a href="{{ path("admin.posts") }}">Posts</a>
+                </li>
+                <li role="presentation" {% if "admin/product" in app.request.pathInfo %}class="active"{% endif %}>
+                    <a href="{#{{ path("admin.products") }}#}">Produits</a>
+                </li>
+                <li role="presentation" {% if "admin/comment" in app.request.pathInfo %}class="active"{% endif %}>
+                    <a href="#">Commentaires</a>
+                </li>
             </ul>
         </nav>
         {#{% endif %}#}

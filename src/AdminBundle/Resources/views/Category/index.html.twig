@@ -1,9 +1,18 @@
 {% extends "::base-admin.html.twig" %}
 
+{% if app.request.get('_route') is same as('admin.post.categories') %}
+    {% set entity = 'post' %}
+{% elseif app.request.get('_route') is same as('admin.product.categories') %}
+    {% set entity = 'product' %}
+{% endif %}
+
 {% block content %}
     <h3>Liste des categories
-        <small><a class="btn btn-sm btn-info pull-right" href="{{ path('' ~ app.request.get('_route') ~'.add') }}"><i
-                        class="glyphicon glyphicon-plus"></i> Ajouter</a></small>
+        <small>
+            <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.' ~ entity ~'.category.add') }}">
+                <i class="glyphicon glyphicon-plus"></i> Ajouter
+            </a>
+        </small>
     </h3>
     <hr/>
 
@@ -30,11 +39,13 @@
                             </button>
                             <ul class="dropdown-menu ">
                                 <li>
-                                    <a href="{{ path('' ~ app.request.get('_route') ~'.edit', {"id": category.id}) }}"><i
-                                                class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a></li>
+                                    <a href="{{ path('admin.' ~ entity ~'.category.edit', {"id": category.id}) }}">
+                                        <i class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a>
+                                </li>
                                 <li>
-                                    <a href="{{ path('' ~ app.request.get('_route') ~'.delete', {"id": category.id}) }}"><i
-                                                class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a></li>
+                                    <a href="{{ path('admin.' ~ entity ~'.category.delete', {"id": category.id}) }}">
+                                        <i class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a>
+                                </li>
                             </ul>
                         </div>
                     </td>

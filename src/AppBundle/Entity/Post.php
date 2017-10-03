@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 
+use AppBundle\Model\CategorizableInterface;
 use AppBundle\Traits\Id;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @ORM\Table(name="posts")
  */
-class Post
+class Post implements CategorizableInterface
 {
     use Id;
 
@@ -40,7 +41,7 @@ class Post
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category\Post")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post\Category")
      * @ORM\JoinColumn(onDelete="RESTRICT")
      */
     private $category;
@@ -196,11 +197,11 @@ class Post
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\Category\Post $category
+     * @param AbstractCategory $category
      *
      * @return Post
      */
-    public function setCategory(\AppBundle\Entity\Category\Post $category = null)
+    public function setCategory(AbstractCategory $category = null)
     {
         $this->category = $category;
 
@@ -210,7 +211,7 @@ class Post
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category\Post
+     * @return \AppBundle\Entity\Post\Category
      */
     public function getCategory()
     {

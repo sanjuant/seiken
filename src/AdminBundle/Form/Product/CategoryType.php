@@ -1,13 +1,13 @@
 <?php
 
-namespace AdminBundle\Form\Category;
+namespace AdminBundle\Form\Product;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostType extends AbstractType
+class CategoryType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -26,7 +26,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Category\Post'
+            'data_class' => 'AppBundle\Entity\Product\Category'
         ));
     }
 
@@ -35,7 +35,7 @@ class PostType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'adminbundle_category_post';
+        return 'adminbundle_product_category';
     }
 
 
