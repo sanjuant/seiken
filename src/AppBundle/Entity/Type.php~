@@ -22,7 +22,7 @@ class Type
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity="Size", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Size", mappedBy="size")
      */
     private $sizes;
 }
