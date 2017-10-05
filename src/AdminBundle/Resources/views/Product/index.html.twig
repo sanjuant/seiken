@@ -25,13 +25,13 @@
             <tbody>
             {% for product in products %}
                 <tr>
-                    <td>{{ post.id }}</td>
-                    <td>{{ post.name }}</td>
-                    <td>{{ post.description }}</td>
-                    <td>{{ post.ref }}</td>
-                    <td>{{ post.category }}</td>
-                    <td>{{ post.type }}</td>
-                    <td>{{ post.price }}</td>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.ref }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.type }}</td>
+                    <td>{{ product.price }}</td>
                     <td>
                         <div class="btn-group pull-right" role="group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
@@ -40,9 +40,9 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu ">
-                                <li><a href="{{ path("admin.post.edit", {"id": post.id}) }}"><i
+                                <li><a href="{{ path("admin.product.edit", {"id": product.id}) }}"><i
                                                 class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a></li>
-                                <li><a href="{{ path("admin.post.delete", {"id": post.id}) }}"><i
+                                <li><a href="{{ path("admin.product.delete", {"id": product.id}) }}"><i
                                                 class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a></li>
                             </ul>
                         </div>

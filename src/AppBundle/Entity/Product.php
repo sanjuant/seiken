@@ -35,22 +35,16 @@ class Product implements CategorizableInterface
      */
     private $ref;
 
-    // Mettre la relation ManyToOne
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product\Category")
+     * @ORM\JoinColumn(onDelete="RESTRICT")
+     */
+    private $category;
+
     /**
      * @ORM\ManyToOne(targetEntity="Type", inversedBy="products")
      */
     private $type;
-
-
-    public function setCategory(AbstractCategory $category)
-    {
-        // TODO: Implement setCategory() method.
-    }
-
-    public function getCategory()
-    {
-        // TODO: Implement getCategory() method.
-    }
 
     /**
      * Set name
@@ -180,5 +174,29 @@ class Product implements CategorizableInterface
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set category
+     *
+     * @param AbstractCategory $category
+     *
+     * @return Product
+     */
+    public function setCategory(AbstractCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Product\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

@@ -1,0 +1,143 @@
+{% extends '::base-admin.html.twig' %}
+
+{% block content %}
+
+    {% if form.vars.data.id is null %}
+        <h3>Ajouter un type</h3>
+    {% else %}
+        <h3>Editer un type</h3>
+    {% endif %}
+
+    <hr/>
+
+    <div class="well">
+        {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+        {#{{ form_widget(form) }}#}
+
+
+        {# src/OC/PlatformBundle/Resources/views/Advert/form.html.twig #}
+
+        {# Le formulaire reste globalement le même,
+           On ne rajoute que le champ catégorie et le lien pour en ajouter #}
+        {#<div class="well">#}
+        {# ... #}
+        {{ form_row(form.label) }}
+        {# store the prototype on the data-prototype attribute #}
+        <ul id="size-fields-list"
+            data-prototype="{{ form_widget(form.sizes.vars.prototype)|e }}">
+            {{ form_row(form.sizes) }}
+            {% for sizeField in form.sizes %}
+                <li>
+                    {{ form_errors(sizeField) }}
+                    {{ form_widget(sizeField) }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="form-group"><a href="#" id="add-another-size" class="btn btn-default">Ajouter une size</a></div>
+
+
+        {#<div class="form-group"><a href="#" id="add_size" class="btn btn-info">Ajouter une size</a></div>#}
+
+        {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+        {# ... #}
+        {#</div>#}
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    {#<script type="text/javascript">#}
+    {#$(document).ready(function () {#}
+    {#// On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.#}
+    {#var $container = $('div#adminbundle_type_sizes');#}
+
+    {#// On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement#}
+    {#var index = $container.find(':input').length;#}
+
+    {#// On ajoute un nouveau champ à chaque clic sur le lien d'ajout.#}
+    {#$('#add_size').click(function (e) {#}
+    {#addSize($container);#}
+
+    {#e.preventDefault(); // évite qu'un # apparaisse dans l'URL#}
+    {#return false;#}
+    {#});#}
+
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var sizeCount = '{{ form.sizes|length }}';
+
+        jQuery(document).ready(function () {
+            jQuery('#add-another-size').click(function (e) {
+                e.preventDefault();
+
+                var sizeList = jQuery('#size-fields-list');
+
+                // grab the prototype template
+                var newWidget = sizeList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[sizes][2]"
+                newWidget = newWidget.replace(/__name__/g, sizeCount);
+                sizeCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(sizeList);
+            });
+        })
+    </script>
+
+    {#// On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'un nouveau type par exemple).#}
+    {#if (index == 0) {#}
+    {#addSize($container);#}
+    {#} else {#}
+    {#// S'il existe déjà des sizes, on ajoute un lien de suppression pour chacune d'entre elles#}
+    {#$container.children('div').each(function () {#}
+    {#addDeleteLink($(this));#}
+    {#});#}
+    {#}#}
+
+    {#// La fonction qui ajoute un formulaire SizeType#}
+    {#function addSize($container) {#}
+    {#// Dans le contenu de l'attribut « data-prototype », on remplace :#}
+    {#// - le texte "__name__label__" qu'il contient par rien#}
+    {#// - le texte "__name__" qu'il contient par le numéro du champ#}
+    {#var template = $container.attr('data-prototype')#}
+    {#.replace(/__name__label__/g, '')#}
+    {#.replace(/__name__/g, index)#}
+    {#;#}
+
+    {#// On crée un objet jquery qui contient ce template#}
+    {#var $prototype = $(template);#}
+
+    {#// On ajoute au prototype un lien pour pouvoir supprimer la size#}
+    {#addDeleteLink($prototype);#}
+
+    {#// On ajoute le prototype modifié à la fin de la balise <div>#}
+    {#$container.append($prototype);#}
+
+    {#// Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro#}
+    {#index++;#}
+    {#}#}
+
+    {#// La fonction qui ajoute un lien de suppression d'une size#}
+    {#function addDeleteLink($prototype) {#}
+    {#// Création du lien#}
+    {#var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');#}
+
+    {#// Ajout du lien#}
+    {#$prototype.append($deleteLink);#}
+
+    {#// Ajout du listener sur le clic du lien pour effectivement supprimer la size#}
+    {#$deleteLink.click(function (e) {#}
+    {#$prototype.remove();#}
+
+    {#e.preventDefault(); // évite qu'un # apparaisse dans l'URL#}
+    {#return false;#}
+    {#});#}
+    {#}#}
+    {#});#}
+    {#</script>#}
+{% endblock %}

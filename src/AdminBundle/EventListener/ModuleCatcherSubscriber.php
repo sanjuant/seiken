@@ -28,6 +28,8 @@ class ModuleCatcherSubscriber implements EventSubscriberInterface
 
         if (property_exists(get_class($controller), 'module')) {
             $this->twig->addGlobal('module', $controller->module);
+        } else {
+            $this->twig->addGlobal('module', null);
         }
     }
 }

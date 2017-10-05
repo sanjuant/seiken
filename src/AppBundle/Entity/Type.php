@@ -17,14 +17,15 @@ class Type
     use Label;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="type")
      */
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity="Size", mappedBy="size")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Size", mappedBy="type", cascade="all", orphanRemoval=true)
      */
     private $sizes;
+
     /**
      * Constructor
      */
@@ -32,6 +33,11 @@ class Type
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sizes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->label;
     }
 
     /**
@@ -112,6 +118,7 @@ class Type
     public function addSize(\AppBundle\Entity\Size $size)
     {
         $this->sizes[] = $size;
+        $size->setType($this);
 
         return $this;
     }

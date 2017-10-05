@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         $post = new Product();
 
-        $form = $this->createForm(Product::class, $post);
+        $form = $this->createForm(ProductType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class ProductController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin.posts');
+            return $this->redirectToRoute('admin.products');
         }
 
         return $this->render('@Admin/Product/form.html.twig', array(
@@ -79,7 +79,7 @@ class ProductController extends Controller
     }
 
     /**
-     * @Route("/post/delete/{id}", name="admin.post.delete")
+     * @Route("/product/delete/{id}", name="admin.product.delete")
      */
     public function deleteAction(Product $product)
     {
@@ -87,6 +87,6 @@ class ProductController extends Controller
         $em->remove($product);
         $em->flush();
 
-        return $this->redirectToRoute('admin.posts');
+        return $this->redirectToRoute('admin.products');
     }
 }

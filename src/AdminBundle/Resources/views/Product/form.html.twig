@@ -2,14 +2,16 @@
 
 {% block content %}
     {% if form.vars.data.id is null %}
-        <h3>Ajouter un post</h3>
+        <h3>Ajouter un product</h3>
     {% else %}
-        <h3>Editer un post</h3>
+        <h3>Editer un product</h3>
     {% endif %}
 
     <hr/>
 
-    {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div class="well">
+        {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

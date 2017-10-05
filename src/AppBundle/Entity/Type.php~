@@ -17,12 +17,13 @@ class Type
     use Label;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="type")
      */
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity="Size", mappedBy="size")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Size", mappedBy="type", cascade="all", orphanRemoval=true)
      */
     private $sizes;
+
 }

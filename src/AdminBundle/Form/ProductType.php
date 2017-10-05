@@ -2,6 +2,8 @@
 
 namespace AdminBundle\Form;
 
+use AppBundle\Entity\Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +21,11 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('price')
             ->add('ref')
-            ->add('type')
+            ->add('type', EntityType::class, array(
+                'class' => Type::class,
+                'choice_label' => 'label',
+                'multiple' => false,
+            ))
             ->add('submit', SubmitType::class)
         ;
     }

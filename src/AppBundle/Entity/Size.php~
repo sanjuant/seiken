@@ -24,6 +24,65 @@ class Size
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Type", inversedBy="sizes")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      */
     private $type;
+
+    /**
+     * Set measurement
+     *
+     * @param string $measurement
+     *
+     * @return Size
+     */
+    public function setMeasurement($measurement)
+    {
+        $this->measurement = $measurement;
+
+        return $this;
+    }
+
+    /**
+     * Get measurement
+     *
+     * @return string
+     */
+    public function getMeasurement()
+    {
+        return $this->measurement;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\Type $type
+     *
+     * @return Size
+     */
+    public function setType(\AppBundle\Entity\Type $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\Type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 }
