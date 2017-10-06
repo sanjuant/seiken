@@ -7,7 +7,7 @@ use AppBundle\Traits\Label;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeRepository")
  * @ORM\Table(name="types")
  */
 class Type

@@ -25,7 +25,7 @@ class TypeController extends Controller
         $types = $this
             ->getDoctrine()
             ->getRepository(Type::class)
-            ->findAll()
+            ->findAllWithSizes()
         ;
 
         return $this->render('@Admin/Type/index.html.twig', array(

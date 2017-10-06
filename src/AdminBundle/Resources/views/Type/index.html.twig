@@ -28,7 +28,9 @@
                         <div class="btn-group" role="group">
                             <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                Measurement
+                                {% for size in type.sizes|slice(0,1) %}
+                                    {{ size.measurement }}&nbsp;
+                                {% endfor %}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu ">
@@ -67,7 +69,7 @@
 
 {% endblock %}
 
-            {% block javascript %}
-                {{ parent() }}
-                {% include 'parts/datatables.html.twig' %}
-            {% endblock %}
+{% block javascript %}
+    {{ parent() }}
+    {% include 'parts/datatables.html.twig' %}
+{% endblock %}
