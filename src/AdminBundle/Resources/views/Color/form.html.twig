@@ -1,0 +1,17 @@
+{% extends '::base-admin.html.twig' %}
+
+{% block content %}
+    {% if form.vars.data.id is null %}
+        <h3>Ajouter une color</h3>
+    {% else %}
+        <h3>Editer une color</h3>
+    {% endif %}
+
+    <hr/>
+
+    <div class="well">
+        {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

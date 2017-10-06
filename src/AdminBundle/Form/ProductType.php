@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Form;
 
+use AppBundle\Entity\Color;
 use AppBundle\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -21,10 +22,16 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('price')
             ->add('ref')
+            ->add('category')
             ->add('type', EntityType::class, array(
                 'class' => Type::class,
                 'choice_label' => 'label',
-                'multiple' => false,
+                'multiple' => false
+            ))
+            ->add('colors', EntityType::class, array(
+                'class' => Color::class,
+                'choice_label' => 'name',
+                'multiple' => true
             ))
             ->add('submit', SubmitType::class)
         ;

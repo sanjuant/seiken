@@ -1,6 +1,80 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <div class="row">
+                <div class="ui link cards">
+                    {% for product in products %}
+                        <div class="card">
+                            <div class="image">
+                                <div class="slider">
+                                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Black.jpg"/>#}
+                                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Blue.jpg"/>#}
+                                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Red.jpg"/>#}
+                                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-White.jpg"/>#}
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="header">{{ product.name }}</div>
+                                <div class="description">
+                                    <div class="ui form">
+                                        <p>{{ product.description }}</p>
+                                        <div class="inline fields">
+                                            <div class="four wide field"><label>Quantité</label></div>
+                                            <div class="twelve wide field">
+                                                <div class="ui input">
+                                                    <input name="quantity" type="number" size="1" placeholder="0"
+                                                           min="0"
+                                                           max="4" class="quantity">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inline fields">
+                                            <div class="four wide field"><label>Couleur</label></div>
+                                            <div class="twelve wide field">
+                                                <div class="ui multiple selection dropdown">
+                                                    <input name="color" type="hidden">
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="default text">Noir</div>
+                                                    <div class="menu">
+                                                        <div class="item" data-value="black">Noir</div>
+                                                        <div class="item" data-value="blue">Bleu</div>
+                                                        <div class="item" data-value="red">Rouge</div>
+                                                        <div class="item" data-value="white">Blanc</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inline fields">
+                                            <div class="four wide field"><label>Taille</label></div>
+                                            <div class="twelve wide field">
+                                                <div class="ui multiple selection dropdown">
+                                                    <input name="size" type="hidden">
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="default text">Taille</div>
+                                                    <div class="menu">
+                                                        <div class="item" data-value="8">8 Oz</div>
+                                                        <div class="item" data-value="10">10 Oz</div>
+                                                        <div class="item" data-value="12">12 Oz</div>
+                                                        <div class="item" data-value="14">14 Oz</div>
+                                                        <div class="item" data-value="16">16 Oz</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <span class="price">44.90</span>
+                                <i class="euro icon"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 

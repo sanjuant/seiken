@@ -42,6 +42,11 @@ class Product implements CategorizableInterface
     private $category;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Color", cascade={"persist"})
+     */
+    private $colors;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Type", inversedBy="products")
      */
     private $type;
@@ -153,30 +158,6 @@ class Product implements CategorizableInterface
     }
 
     /**
-     * Set type
-     *
-     * @param \AppBundle\Entity\Type $type
-     *
-     * @return Product
-     */
-    public function setType(\AppBundle\Entity\Type $type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return \AppBundle\Entity\Type
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Set category
      *
      * @param AbstractCategory $category
@@ -198,5 +179,53 @@ class Product implements CategorizableInterface
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set colors
+     *
+     * @param \AppBundle\Entity\Color $colors
+     *
+     * @return Product
+     */
+    public function setColors(\AppBundle\Entity\Color $colors = null)
+    {
+        $this->colors = $colors;
+
+        return $this;
+    }
+
+    /**
+     * Get colors
+     *
+     * @return \AppBundle\Entity\Color
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\Type $type
+     *
+     * @return Product
+     */
+    public function setType(\AppBundle\Entity\Type $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\Type
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

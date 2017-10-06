@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -81,9 +82,12 @@ class DefaultController extends Controller
      */
     public function boutiqueAction()
     {
+        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+
         return $this->render('@App/Default/boutique.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
-            'position' => 'center'
+            'position' => 'center',
+            'products' => $products
         ));
     }
 

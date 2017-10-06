@@ -1,0 +1,28 @@
+<?php
+
+namespace AppBundle\Entity;
+
+
+use AppBundle\Traits\Id;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity()
+ * @UniqueEntity("name")
+ * @ORM\Table(name="colors")
+ */
+class Color
+{
+    use Id;
+
+    /**
+     * @ORM\Column(type="string", length=15, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="2", max="25")
+     */
+    private $name;
+
+
+}

@@ -58,6 +58,9 @@
                 <li role="presentation" {% if 'type' is same as(module) %}class="active"{% endif %}>
                     <a href="{{ path("admin.product.types") }}">Types</a>
                 </li>
+                <li role="presentation" {% if 'product.color' is same as(module) %}class="active"{% endif %}>
+                    <a href="{{ path("admin.product.colors") }}">Colors</a>
+                </li>
                 <li role="presentation" {% if 'comment' is same as(module) %}class="active"{% endif %}>
                     <a href="#">Commentaires</a>
                 </li>
