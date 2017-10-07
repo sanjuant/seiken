@@ -42,8 +42,7 @@ class Product implements CategorizableInterface
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Color")
-     * @ORM\JoinColumn(onDelete="RESTRICT")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Color", cascade={"persist"})
      */
     private $colors;
 
@@ -52,27 +51,13 @@ class Product implements CategorizableInterface
      */
     private $type;
 
-    /**
-     * Set category
-     *
-     * @param AbstractCategory $category
-     *
-     * @return Product
-     */
-    public function setCategory(AbstractCategory $category = null)
+    public function setCategory(AbstractCategory $category)
     {
-        $this->category = $category;
-
-        return $this;
+        // TODO: Implement setCategory() method.
     }
 
-    /**
-     * Get category
-     *
-     * @return \AppBundle\Entity\Product\Category
-     */
     public function getCategory()
     {
-        return $this->category;
+        // TODO: Implement getCategory() method.
     }
 }

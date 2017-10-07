@@ -76,20 +76,20 @@ class DefaultController extends Controller
         ));
     }
 
-    /**
-     * @Route("/boutique", name="boutique")
-     * @Method("GET")
-     */
-    public function boutiqueAction()
-    {
-        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-
-        return $this->render('@App/Default/boutique.html.twig', array(
-            'img' => 'assets/img/boutique.jpg',
-            'position' => 'center',
-            'products' => $products
-        ));
-    }
+//    /**
+//     * @Route("/boutique", name="boutique")
+//     * @Method("GET")
+//     */
+//    public function boutiqueAction()
+//    {
+//        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+//
+//        return $this->render('@App/Default/boutique.html.twig', array(
+//            'img' => 'assets/img/boutique.jpg',
+//            'position' => 'center',
+//            'products' => $products
+//        ));
+//    }
 
     /**
      * @Route("/contact", name="contact")

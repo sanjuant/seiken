@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <div class="row">
+                <div class="ui link cards">
+                    {% for product in products %}
+                        {{ render(controller('AppBundle:Shop:form', {'product': product})) }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

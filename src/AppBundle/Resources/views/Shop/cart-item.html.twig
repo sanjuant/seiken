@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="image">
+        <div class="slider">
+            {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Black.jpg"/>#}
+            {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Blue.jpg"/>#}
+            {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Red.jpg"/>#}
+            {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-White.jpg"/>#}
+            {{ dump(cartItem) }}
+        </div>
+    </div>
+    <div class="content">
+        <div class="header">{{ cartItem.product.name }}</div>
+        <div class="description">
+            <div class="ui form">
+                <p>{{ cartItem.product.description }}</p>
+            </div>
+        </div>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <div class="extra content">
+        <span class="price">{{ cartItem.product.price }}</span>
+        <i class="euro icon"></i>
+    </div>
+
+</div>

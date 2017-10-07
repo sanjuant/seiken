@@ -7,6 +7,8 @@ use AppBundle\Entity\Product;
 
 class CartItem
 {
+
+
     /**
      * @var Product $product
      */

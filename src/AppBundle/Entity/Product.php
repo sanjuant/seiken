@@ -52,6 +52,19 @@ class Product implements CategorizableInterface
     private $type;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->colors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->id;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
