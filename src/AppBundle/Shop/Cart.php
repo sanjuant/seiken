@@ -3,18 +3,19 @@
 namespace AppBundle\Shop;
 
 
+use AppBundle\Shop\Storage\StorageInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Cart implements CartInterface
 {
-
-
     private $storage;
     private $cart = array();
 
-    public function __construct(SessionInterface $session)
+    public function __construct(StorageInterface $session)
     {
         $this->storage = $session;
+
+        $this->cart = $this->storage->load();
     }
 
     public function add(CartItem $item)
@@ -27,17 +28,16 @@ class Cart implements CartInterface
             $this->cart[$index]['quantity'] += $item->getQuantity();
         }
 
-        // Si il existe on incremente la qty
-
-        // Sinon on creer une entrée avec qty = 1
+        $this->save();
 
         return $this;
     }
 
-    public function remove(CartItem $item)
+    public function remove($index)
     {
-        if (null !== $index = $this->searchItem($item)) {
+        if (isset($this->cart[$index])) {
             unset($this->cart[$index]);
+            $this->save();
         }
     }
 
@@ -51,7 +51,8 @@ class Cart implements CartInterface
         $tab = array_filter(
             $this->cart, function ($row) use ($item) {
             return $row['id'] == $item->getProduct()->getId()
-                && $row['size'] == $item->getSize();
+                && $row['size'] == $item->getSize()
+                && $row['color'] == $item->getColor();
         });
 
         if (count($tab) > 0) {
@@ -61,6 +62,6 @@ class Cart implements CartInterface
 
     private function save()
     {
-
+        $this->storage->save($this);
     }
 }

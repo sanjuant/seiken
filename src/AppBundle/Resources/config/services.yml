@@ -1,0 +1,9 @@
+services:
+
+  app.session.storage:
+    class: AppBundle\Shop\Storage\SessionStorage
+    arguments: ["@session"]
+
+  app.cart:
+    class: AppBundle\Shop\Cart
+    arguments: ["@app.session.storage"]

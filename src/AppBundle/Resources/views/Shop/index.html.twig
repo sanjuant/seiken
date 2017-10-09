@@ -3,12 +3,24 @@
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             <div class="row">
-                <div class="ui link cards">
+                <div class="ui special cards">
                     {% for product in products %}
-                        {{ render(controller('AppBundle:Shop:form', {'product': product})) }}
+                        {% include '@App/Shop/cart-item.html.twig' %}
                     {% endfor %}
                 </div>
             </div>
         </div>
+
+
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $('.special.cards .image').dimmer({
+            on: 'hover'
+        });
+    </script>
+
+
 {% endblock %}

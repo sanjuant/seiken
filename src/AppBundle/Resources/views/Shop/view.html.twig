@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <div class="row">
+                <div class="blurring dimmable left floated image">
+                    {#<div class="slider">#}
+                    <img src="{{ asset('images/boutique/thumbnails/Blitz-Pro-Boxing-Gloves-Blue.jpg') }}"/>
+                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Blue.jpg"/>#}
+                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Red.jpg"/>#}
+                    {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-White.jpg"/>#}
+                    {#{{ dump(product) }}#}
+                    {#</div>#}
+                </div>
+                <div class="content">
+                    <div class="header center aligned">{{ cartItem.product.name }}</div>
+                    <div class="description">
+                        <div class="ui form">
+                            <p>{{ cartItem.product.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <span class="price">{{ cartItem.product.price }}</span>
+                    <i class="euro icon"></i>
+                    <a class="tiny ui vertical animated right floated button" tabindex="0"
+                       href="#">
+                        <div class="hidden content">Add</div>
+                        <div class="visible content">
+                            <i class="shop icon"></i>
+                        </div>
+                    </a>
+                    {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -28,26 +28,32 @@ class ShopController extends Controller
         ));
     }
 
-    public function formAction(Product $product, Request $request)
+    /**
+     * @Route("/{id}", name="boutique.product")
+     * @param Product $product
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function viewAction(Product $product, Request $request)
     {
         $cartItem = new CartItem();
         $cartItem->setProduct($product);
 
-        $form = $this->createForm(CartItemType::class, $cartItem);
+        $form = $this->createForm(CartItemType::class, $cartItem, array("product" => $product));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($form->getData());
-            $em->flush();
+
+            $this->get('app.cart')->add($cartItem);
 
             return $this->redirectToRoute('boutique');
         }
 
-        return $this->render('@App/Shop/cart-item.html.twig', array(
+        return $this->render('@App/Shop/view.html.twig', array(
+            'img' => 'assets/img/boutique.jpg',
+            'position' => 'center',
             'cartItem' => $cartItem,
             'form' => $form->createView()
         ));
-
     }
 }

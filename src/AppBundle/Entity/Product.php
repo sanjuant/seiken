@@ -209,9 +209,7 @@ class Product implements CategorizableInterface
     }
 
     /**
-     * Get colors
-     *
-     * @return \AppBundle\Entity\Color
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getColors()
     {

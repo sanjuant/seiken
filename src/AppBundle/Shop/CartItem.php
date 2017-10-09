@@ -3,12 +3,12 @@
 namespace AppBundle\Shop;
 
 
+use AppBundle\Entity\Color;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Size;
 
 class CartItem
 {
-
-
     /**
      * @var Product $product
      */
@@ -17,6 +17,8 @@ class CartItem
     private $quantity;
 
     private $size;
+
+    private $color;
 
     /**
      * @return mixed
@@ -63,15 +65,43 @@ class CartItem
      */
     public function setSize($size)
     {
-        $this->size = $size;
+        if ($size instanceof Size) {
+            $this->size = $size->getMeasurement();
+        } else {
+            $this->size = $size;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param mixed $color
+     */
+    public function setColor($color)
+    {
+        if ($color instanceof Color) {
+            $this->color = $color->getName();
+        } else {
+            $this->color = $color;
+        }
     }
 
 
     public function toArray()
     {
-        return array('id' => $this->getProduct()->getId(),
-                     'quantity' => $this->getQuantity(),
-                     'size' => $this->getSize(),
+        return array(
+            'id' => $this->getProduct()->getId(),
+            'name' => $this->getProduct()->getName(),
+            'price' => $this->getProduct()->getPrice(),
+            'quantity' => $this->getQuantity(),
+            'size' => $this->getSize(),
+            'color' => $this->getColor(),
         );
     }
 }

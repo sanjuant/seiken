@@ -2,13 +2,9 @@
 
 namespace AppBundle\Form;
 
-use AdminBundle\Form\ProductType;
-use AppBundle\Entity\Type;
 use AppBundle\Shop\CartItem;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,10 +16,29 @@ class CartItemType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
-            ->add('product', HiddenType::class)
-            ->add('size')
-            ->add('quantity')
+            ->add('size', ChoiceType::class, array(
+                'choices' => $options['product']->getType()->getSizes()->toArray(),
+                'placeholder' => false,
+                "choice_label" => "measurement",
+
+            ))
+            ->add('color', ChoiceType::class, array(
+                'choices' => $options['product']->getColors(),
+                'placeholder' => false,
+                'choice_label' => 'name',
+
+            ))
+            ->add('quantity', ChoiceType::class, array(
+                'choices' => array(
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                )
+            ))
             ->add('submit', SubmitType::class)
         ;
     }
@@ -35,7 +50,10 @@ class CartItemType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => CartItem::class,
+            'product' => null
         ));
+
+
     }
 
     /**
