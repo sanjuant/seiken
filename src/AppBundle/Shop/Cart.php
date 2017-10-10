@@ -21,7 +21,6 @@ class Cart implements CartInterface
     public function add(CartItem $item)
     {
         // Verifier qu'il n'existe pas déjà dans la collection
-
         if (null === $index = $this->searchItem($item)) {
             $this->cart[] = $item->toArray();
         } else {
@@ -60,8 +59,20 @@ class Cart implements CartInterface
         }
     }
 
+    public function totalPrice()
+    {
+        $totalPrice = 0;
+        for ($i = 0; $i < count($this->cart); $i++) {
+            $totalPrice += $this->cart[$i]['quantity'] * $this->cart[$i]['price'];
+        }
+
+        return $totalPrice;
+    }
+
     private function save()
     {
+        $this->totalPrice();
+
         $this->storage->save($this);
     }
 }
