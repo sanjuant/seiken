@@ -2,40 +2,56 @@
 
 {% block content %}
     <div class="ui vertical stripe segment">
-        <div class="ui two column middle aligned stackable grid container">
+        <div class="ui two column aligned stackable grid container">
             <div class="row">
                 <div class="four wide column">
                     <div class="ui vertical steps">
-                        <a class="completed step">
+                        <a class="completed step" href="{{ path('cart') }}">
+                            <i class="shopping basket icon"></i>
+                            <div class="content">
+                                <div class="title">Panier</div>
+                                <div class="description">Vérfier vos articles</div>
+                            </div>
+                        </a>
+                        <a class="completed step" href="{{ path('cart.address') }}">
                             <i class="truck icon"></i>
                             <div class="content">
-                                <div class="title">Previous Step</div>
-                                <div class="description">Description</div>
+                                <div class="title">Informations</div>
+                                <div class="description">Entrez vos informations</div>
                             </div>
                         </a>
                         <a class="active step">
-                            <i class="payment icon"></i>
+                            <i class="info icon"></i>
                             <div class="content">
-                                <div class="title">Active Step</div>
-                                <div class="description">Description</div>
+                                <div class="title">Récapitulatif</div>
+                                <div class="description">Vérfier la commande</div>
                             </div>
                         </a>
                         <a class="disabled step">
-                            <i class="info icon"></i>
+                            <i class="checkmark icon"></i>
                             <div class="content">
-                                <div class="title">Disabled Step</div>
-                                <div class="description">Description</div>
+                                <div class="title">Validation</div>
+                                <div class="description">Commande terminée</div>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="twelve wide column">
                     <div class="row">
-                        <div class="ui segment">{{ recap.lastname }}</div>
+                        <div class="ui segment">
+                            <a class="header">{{ recap.firstname }} {{ recap.lastname }}</a>
+                            <div class="meta">
+                                <span>{{ recap.address }}, <br/>{{ recap.postalCode }} {{ recap.city }}</span>
+                            </div>
+                            <div class="extra">
+                                <span class="ui sub header">{{ recap.email }}</span><br/>
+                                <span class="ui sub header">{{ recap.phone }}</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="ui hidden divider"></div>
                     <div class="row">
-                        <div class="ui segment">
+                        <div class="ui clearing segment">
                             <table class="ui celled table">
                                 <thead>
                                 <tr>
@@ -63,7 +79,12 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <a href="{{ path('cart.success') }}">Suivant</a>
+                            <a class="ui animated right floated button" href="{{ path('cart.success') }}" tabindex="0">
+                                <div class="visible content">Terminer</div>
+                                <div class="hidden content">
+                                    <i class="right arrow icon"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

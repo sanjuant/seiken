@@ -2,11 +2,45 @@
 
 {% block content %}
     <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable container">
+        <div class="ui two column aligned stackable grid container">
             <div class="row">
-                <div class="ui segment">
-                    <p>Félicitation, nous avons bien pris votre commande.</p>
-                    <a href="{{ path('accueil') }}">Retour à l'accueil</a>
+                <div class="four wide column">
+                    <div class="ui vertical steps">
+                        <a class="completed step" href="{{ path('cart') }}">
+                            <i class="shopping basket icon"></i>
+                            <div class="content">
+                                <div class="title">Panier</div>
+                                <div class="description">Vérfier vos articles</div>
+                            </div>
+                        </a>
+                        <a class="completed step" href="{{ path('cart.address') }}">
+                            <i class="truck icon"></i>
+                            <div class="content">
+                                <div class="title">Informations</div>
+                                <div class="description">Entrez vos informations</div>
+                            </div>
+                        </a>
+                        <a class="completed step">
+                            <i class="info icon"></i>
+                            <div class="content">
+                                <div class="title">Récapitulatif</div>
+                                <div class="description">Vérfier la commande</div>
+                            </div>
+                        </a>
+                        <a class="active step">
+                            <i class="checkmark icon"></i>
+                            <div class="content">
+                                <div class="title">Validation</div>
+                                <div class="description">Commande terminée</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="twelve wide column">
+                    <div class="ui clearing segment">
+                        <p>Félicitation, nous avons bien pris votre commande.</p>
+                        <a href="{{ path('accueil') }}">Retour à l'accueil</a>
+                    </div>
                 </div>
             </div>
         </div>

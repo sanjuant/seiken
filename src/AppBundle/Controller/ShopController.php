@@ -24,7 +24,7 @@ class ShopController extends Controller
         return $this->render('@App/Shop/index.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
-            'products' => $products
+            'products' => $products,
         ));
     }
 
@@ -36,6 +36,8 @@ class ShopController extends Controller
      */
     public function viewAction(Product $product, Request $request)
     {
+        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+
         $cartItem = new CartItem();
         $cartItem->setProduct($product);
 
@@ -49,10 +51,12 @@ class ShopController extends Controller
             return $this->redirectToRoute('boutique');
         }
 
-        return $this->render('@App/Shop/view.html.twig', array(
+        return $this->render('@App/Shop/index.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
             'cartItem' => $cartItem,
+            'products' => $products,
+            'product' => $product,
             'form' => $form->createView()
         ));
     }

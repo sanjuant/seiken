@@ -23,6 +23,7 @@ class CartController extends Controller
         return $this->render('@App/Cart/index.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
+            'page' => 'cart',
             'cart' => $cart
         ));
     }
@@ -47,9 +48,8 @@ class CartController extends Controller
         $order = new Order();
         $cart = $this->get('app.cart');
         $order->setCart(serialize($cart->get()));
-        $order->setPayOff(false);
+        $order->setPayOff(0);
         $order->setTotalPrice($cart->totalPrice());
-
 
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);

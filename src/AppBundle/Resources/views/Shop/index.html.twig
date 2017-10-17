@@ -10,17 +10,39 @@
                 </div>
             </div>
         </div>
-
-
     </div>
+
+    {% if product is defined %}
+        <div class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">
+                <p>{{ product.name }}</p>
+            </div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <img src="{{ asset('images/boutique/thumbnails/Blitz-Pro-Boxing-Gloves-Blue.jpg') }}"/>
+                </div>
+                <div class="block">
+                    <div class="description">
+                        <div class="ui header">Description</div>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript">
-        $('.special.cards .image').dimmer({
-            on: 'hover'
-        });
-    </script>
 
-
+    {% if product is defined %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.ui.modal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

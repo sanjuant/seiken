@@ -2,39 +2,79 @@
 
 {% block content %}
     <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable container">
+        <div class="ui two column aligned stackable grid container">
             <div class="row">
-                <div class="ui segment">
-                    <table class="ui celled table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for index, cartItem in cart %}
-                            {% set totalPrice = cartItem.price * cartItem.quantity %}
+                <div class="four wide column">
+                    <div class="ui vertical steps">
+                        <a class="active step">
+                            <i class="shopping basket icon"></i>
+                            <div class="content">
+                                <div class="title">Panier</div>
+                                <div class="description">Vérfier vos articles</div>
+                            </div>
+                        </a>
+                        <a class="disabled step">
+                            <i class="address card icon"></i>
+                            <div class="content">
+                                <div class="title">Informations</div>
+                                <div class="description">Entrez vos informations</div>
+                            </div>
+                        </a>
+                        <a class="disabled step">
+                            <i class="info icon"></i>
+                            <div class="content">
+                                <div class="title">Récapitulatif</div>
+                                <div class="description">Vérfier la commande</div>
+                            </div>
+                        </a>
+                        <a class="disabled step">
+                            <i class="checkmark icon"></i>
+                            <div class="content">
+                                <div class="title">Validation</div>
+                                <div class="description">Commande terminée</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="twelve wide column">
+                    <div class="ui clearing segment">
+                        <table class="ui table">
+                            <thead>
                             <tr>
-                                <td>{{ cartItem.id }}</td>
-                                <td>{{ cartItem.name }}</td>
-                                <td>{{ cartItem.color }}</td>
-                                <td>{{ cartItem.size }}</td>
-                                <td>{{ cartItem.quantity }}</td>
-                                <td>{{ cartItem.price }}</td>
-                                <td>{{ totalPrice }}</td>
-                                <td><a href="{{ path('cart.item.delete', {'id': index}) }}">Delete</a></td>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th></th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <a href="{{ path('cart.address') }}">Suivant</a>
+                            </thead>
+                            <tbody>
+                            {% for index, cartItem in cart %}
+                                {% set totalPrice = cartItem.price * cartItem.quantity %}
+                                <tr>
+                                    <td>{{ cartItem.id }}</td>
+                                    <td>{{ cartItem.name }}</td>
+                                    <td>{{ cartItem.color }}</td>
+                                    <td>{{ cartItem.size }}</td>
+                                    <td>{{ cartItem.quantity }}</td>
+                                    <td>{{ cartItem.price }}</td>
+                                    <td>{{ totalPrice }}</td>
+                                    <td><a href="{{ path('cart.item.delete', {'id': index}) }}"><i
+                                                    class="trash outline icon"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="ui animated right floated button" href="{{ path('cart.address') }}" tabindex="0">
+                            <div class="visible content">Suivant</div>
+                            <div class="hidden content">
+                                <i class="right arrow icon"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
