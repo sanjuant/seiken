@@ -47,7 +47,7 @@
     padding: 5em 0em;
 }
 
-a.h3.title {
+a.h3.title, .h3.title {
     font-size: 2em;
     text-transform: uppercase;
     color: black;

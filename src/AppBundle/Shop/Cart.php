@@ -71,7 +71,7 @@ class Cart implements CartInterface
 
     private function save()
     {
-        $this->totalPrice();
+//        $this->totalPrice();
 
         $this->storage->save($this);
     }

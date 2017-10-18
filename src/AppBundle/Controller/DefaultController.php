@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Member;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Product;
+use AppBundle\Form\MemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -99,6 +101,31 @@ class DefaultController extends Controller
         return $this->render('@App/Default/contact.html.twig', array(
             'img' => 'assets/img/contact.jpg',
             'position' => 'center'
+        ));
+    }
+
+    /**
+     * @Route("/affiliate", name="affiliate")
+     */
+    public function affiliateAction(Request $request)
+    {
+        $member = new Member();
+
+        $form = $this->createForm(MemberType::class, $member);
+        $form->handleRequest($request);
+
+        if ($form->isValid() && $form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('@App/Default/affiliate.html.twig', array(
+            'img' => 'assets/img/contact.jpg',
+            'position' => 'center',
+            'form' => $form->createView()
         ));
     }
 }

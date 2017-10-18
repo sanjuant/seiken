@@ -96,6 +96,7 @@ class CartItem
     public function toArray()
     {
         return array(
+            'ref' => $this->getProduct()->getRef(),
             'id' => $this->getProduct()->getId(),
             'name' => $this->getProduct()->getName(),
             'price' => $this->getProduct()->getPrice(),

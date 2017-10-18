@@ -55,7 +55,7 @@
                             <table class="ui celled table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Ref</th>
                                     <th>Name</th>
                                     <th>Color</th>
                                     <th>Size</th>
@@ -68,7 +68,7 @@
                                 {% for index, cartItem in recap.cart %}
                                     {% set totalPrice = cartItem.price * cartItem.quantity %}
                                     <tr>
-                                        <td>{{ cartItem.id }}</td>
+                                        <td>{{ cartItem.ref }}</td>
                                         <td>{{ cartItem.name }}</td>
                                         <td>{{ cartItem.color }}</td>
                                         <td>{{ cartItem.size }}</td>
@@ -77,7 +77,19 @@
                                         <td>{{ totalPrice }}</td>
                                     </tr>
                                 {% endfor %}
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>{{ recap.totalPrice }}</b></td>
+                                </tr>
                                 </tbody>
+                                <tfoot>
+
+                                </tfoot>
                             </table>
                             <a class="ui animated right floated button" href="{{ path('cart.success') }}" tabindex="0">
                                 <div class="visible content">Terminer</div>

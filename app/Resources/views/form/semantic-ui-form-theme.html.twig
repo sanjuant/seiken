@@ -83,7 +83,7 @@
 
 {% block checkbox_widget -%}
     <div class="ui toggle checkbox">
-        {% set attr = attr|merge({class: (attr.class|default('') ~ ' hidden')|trim}) %}
+        {{ parent() }}
         {{- form_label(form, null, { widget: parent() }) -}}
     </div>
 {%- endblock checkbox_widget %}
@@ -114,7 +114,7 @@
 {%- endblock radio_label %}
 
 {% block checkbox_radio_label %}
-    Do not display the label if widget is not defined in order to prevent double label rendering
+    {# Do not display the label if widget is not defined in order to prevent double label rendering #}
     {% if widget is defined %}
         {% if required %}
             {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
@@ -129,8 +129,9 @@
                 {% set label = name|humanize %}
             {%- endif -%}
         {% endif %}
+        {{- widget|raw }}
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        {{- widget|raw }} {{ label is not same as(false) ? (translation_domain is same as(false) ? label : label|trans({}, translation_domain)) -}}
+        {{ label is not same as(false) ? (translation_domain is same as(false) ? label : label|trans({}, translation_domain)) -}}
         </label>
     {% endif %}
 {% endblock checkbox_radio_label %}

@@ -38,7 +38,7 @@
                 </div>
                 <div class="twelve wide column">
                     <div class="ui clearing segment">
-                        {{ form_start(form) }}
+                        {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
                         {{ form_widget(form) }}
                         {{ form_end(form) }}
                     </div>
