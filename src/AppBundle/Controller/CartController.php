@@ -45,22 +45,24 @@ class CartController extends Controller
      */
     public function addressAction(Request $request)
     {
-        $order = new Order();
-        $cart = $this->get('app.cart');
-        $order->setCart(serialize($cart->get()));
-        $order->setPayOff(0);
-        $order->setTotalPrice($cart->totalPrice());
+        if ($this->get('session')->get('order') === null) {
+            $order = new Order();
+            $cart = $this->get('app.cart');
+            $order->setCart(serialize($cart->get()));
+            $order->setPayOff(0);
+            $order->setTotalPrice($cart->totalPrice());
+        } else {
+            $order = $this->get('session')->get('order');
+        }
 
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($form->getData());
-            $em->flush();
-            $em->refresh($order);
+            $session = $this->get('session');
+            $session->set('order', $order);
 
-            return $this->redirectToRoute('cart.recap', array('id' => $order->getId()));
+            return $this->redirectToRoute('cart.recap');
         }
 
         return $this->render('@App/Cart/address.html.twig', array(
@@ -71,12 +73,12 @@ class CartController extends Controller
     }
 
     /**
-     * @Route("/recap/{id}", name="cart.recap")
+     * @Route("/recap", name="cart.recap")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function recapAction($id)
+    public function recapAction()
     {
-        $recap = $this->getDoctrine()->getRepository(Order::class)->find($id);
+        $recap = $this->get('session')->get('order');
 
         return $this->render('@App/Cart/recap.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
@@ -91,6 +93,12 @@ class CartController extends Controller
      */
     public function successAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($this->get('session')->get('order'));
+        $em->flush();
+
+        $this->get('session')->clear();
+
         return $this->render('@App/Cart/success.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
