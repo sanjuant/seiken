@@ -15,8 +15,9 @@
 <a class="{% if 'club' in app.request.pathInfo %}active{% endif %} item" href="{{ path('club') }}">Le Club</a>
 <a class="{% if 'boutique' in app.request.pathInfo %}active{% endif %} item" href="{{ path('boutique') }}">Boutique</a>
 <div class="right item">
-
-    <a class="ui inverted button" href="{{ path('cart') }}"><i
-                class="cart icon"></i> {{ app.session.get('cart') | length }}</a>
+    {% if app.session.get('cart') is not empty %}
+        <a class="ui inverted button" href="{{ path('cart') }}"><i
+                    class="cart icon"></i> {{ app.session.get('cart') | length }}</a>
+    {% endif %}
     <a class="ui inverted button" href="{{ path('contact') }}">Contact</a>
 </div>

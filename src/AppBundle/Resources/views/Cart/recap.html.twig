@@ -39,7 +39,7 @@
                 <div class="twelve wide column">
                     <div class="row">
                         <div class="ui segment">
-                            <a class="header">{{ recap.firstname }} {{ recap.lastname }}</a>
+                            <div class="header">{{ recap.firstname }} {{ recap.lastname }}</div>
                             <div class="meta">
                                 <span>{{ recap.address }}, <br/>{{ recap.postalCode }} {{ recap.city }}</span>
                             </div>
@@ -87,9 +87,6 @@
                                     <td><b>{{ recap.totalPrice }}</b></td>
                                 </tr>
                                 </tbody>
-                                <tfoot>
-
-                                </tfoot>
                             </table>
                             <a class="ui animated right floated button" href="{{ path('cart.success') }}" tabindex="0">
                                 <div class="visible content">Terminer</div>

@@ -1,0 +1,52 @@
+{% extends '::base-admin.html.twig' %}
+
+{% block content %}
+    <hr/>
+    <h3>Order {{ order.id }}    </h3>
+    <div class="header">{{ order.firstname }} {{ order.lastname }}</div>
+    <div class="meta">
+        <span>{{ order.address }}, <br/>{{ order.postalCode }} {{ order.city }}</span>
+    </div>
+    <div class="extra">
+        <span class="ui sub header">{{ order.email }}</span><br/>
+        <span class="ui sub header">{{ order.phone }}</span>
+    </div>
+    <hr/>
+    <table id="table_id" class="table table-striped table-bordered display">
+        <thead>
+        <tr>
+            <th>Ref</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for index, cartItem in order.cart %}
+            {% set totalPrice = cartItem.price * cartItem.quantity %}
+            <tr>
+                <td>{{ cartItem.ref }}</td>
+                <td>{{ cartItem.name }}</td>
+                <td>{{ cartItem.color }}</td>
+                <td>{{ cartItem.size }}</td>
+                <td>{{ cartItem.quantity }}</td>
+                <td>{{ cartItem.price }}</td>
+                <td>{{ totalPrice }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>{{ order.totalPrice }}</b></td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
+

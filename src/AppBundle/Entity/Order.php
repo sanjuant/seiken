@@ -270,8 +270,8 @@ class Order
      */
     public function getCart()
     {
-        return unserialize($this->cart);
 //        return $this->cart;
+        return unserialize($this->cart);
     }
 
     /**
@@ -279,6 +279,7 @@ class Order
      */
     public function setCart($cart)
     {
-        $this->cart = $cart;
+//        $this->cart = $cart;
+        $this->cart = serialize($cart);
     }
 }

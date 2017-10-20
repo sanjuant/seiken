@@ -24,7 +24,7 @@
         {%- if orders is not null %}
             <tbody>
             {% for order in orders %}
-                <tr class="{%- if order.payOff is not same as(true) -%}alert-danger{%- else -%}alert-success{%- endif -%}">
+                <tr class="{%- if order.payOff is not same as(true) -%}danger{%- else -%}success{%- endif -%}">
                     <td>{{ order.id }}</td>
                     <td>{{ order.lastname }} {{ order.firstname }}</td>
                     <td>{{ order.phone }}</td>
@@ -36,17 +36,20 @@
                                 class="glyphicon glyphicon-ok"> True</span>{%- endif -%}</td>
                     <td>
                         <div class="btn-group pull-right" role="group">
-                            {#<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"#}
-                            {#aria-haspopup="true" aria-expanded="false">#}
-                            {#Actions#}
-                            {#<span class="caret"></span>#}
-                            {#</button>#}
-                            {#<ul class="dropdown-menu ">#}
-                            {#<li><a href="{{ path("admin.order.edit", {"id": order.id}) }}"><i#}
-                            {#class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a></li>#}
-                            {#<li><a href="{{ path("admin.order.delete", {"id": order.id}) }}"><i#}
-                            {#class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a></li>#}
-                            {#</ul>#}
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li><a href="{{ path("admin.order.payoff", {"id": order.id}) }}"><i
+                                                class="glyphicon glyphicon-{%- if order.payOff is same as(false) -%}ok{%- else -%}remove{% endif %}"></i>
+                                        &nbsp;PayOff</a></li>
+                                <li><a href="{{ path("admin.order.view", {"id": order.id}) }}"><i
+                                                class="glyphicon glyphicon-eye-open"></i> &nbsp;View</a></li>
+                                <li><a href="{{ path("admin.order.delete", {"id": order.id}) }}"><i
+                                                class="glyphicon glyphicon-trash"></i> &nbsp;Delete</a></li>
+                            </ul>
                         </div>
                     </td>
                 </tr>

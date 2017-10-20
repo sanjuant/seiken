@@ -20,6 +20,9 @@ class CartController extends Controller
     {
         $cart = $this->get('app.cart')->get();
 
+        // Si le panier est vide on redirige vers la page d'accueil
+        if (empty($cart)) return $this->redirectToRoute('accueil');
+
         return $this->render('@App/Cart/index.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
@@ -48,7 +51,7 @@ class CartController extends Controller
         if ($this->get('session')->get('order') === null) {
             $order = new Order();
             $cart = $this->get('app.cart');
-            $order->setCart(serialize($cart->get()));
+            $order->setCart($cart->get());
             $order->setPayOff(0);
             $order->setTotalPrice($cart->totalPrice());
         } else {

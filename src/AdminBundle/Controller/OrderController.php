@@ -29,4 +29,41 @@ class OrderController extends Controller
             'orders' => $orders
         ));
     }
+
+    /**
+     * @Route("/order/payoff/{id}", name="admin.order.payoff")
+     */
+    public function payOffAction($id)
+    {
+        // SELECT * FROM posts;
+        $order = $this->getDoctrine()->getRepository(Order::class)->find($id);
+
+        $order->setPayOff($order->getPayOff() === true ? false : true);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('admin.orders');
+    }
+
+    /**
+     * @Route("/order/{id}", name="admin.order.view")
+     */
+    public function viewAction(Order $order)
+    {
+        return $this->render('@Admin/Order/view.html.twig', array(
+            'order' => $order
+        ));
+    }
+
+    /**
+     * @Route("/order/delete/{id}", name="admin.order.delete")
+     */
+    public function deleteAction(Order $order)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($order);
+        $em->flush();
+
+        return $this->redirectToRoute('admin.orders');
+    }
 }
