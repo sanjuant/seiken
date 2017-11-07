@@ -40,9 +40,6 @@
                         <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
                         <a href="#" class="jcarousel-control-next">&rsaquo;</a>
                     </div>
-                    {#{% for img in product.images %}#}
-                    {#<img src="{{ asset('images/products/' ~img.name) }}" alt=" "/>#}
-                    {#{% endfor %}#}
                 </div>
                 <div class="block">
                     <div class="description">
@@ -71,13 +68,6 @@
             {% if product is defined %}
             $('.ui.modal').modal('show');
             {% endif %}
-//            $('.slider').sss({
-//                slideShow: false, // Set to false to prevent SSS from automatically animating.
-//                startOn: 0, // Slide to display first. Uses array notation (0 = first slide).
-//                transition: 400, // Length (in milliseconds) of the fade transition.
-//                speed: 10000, // Slideshow speed in milliseconds.
-//                showNav: true // Set to false to hide navigation arrows.
-//            });
             $('.jcarousel').jcarousel();
         });
     </script>
