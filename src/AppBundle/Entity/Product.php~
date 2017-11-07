@@ -36,6 +36,11 @@ class Product implements CategorizableInterface
     private $ref;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product\Image", mappedBy="product", cascade="all", orphanRemoval=true)
+     */
+    private $images;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product\Category")
      * @ORM\JoinColumn(onDelete="RESTRICT")
      */
@@ -51,13 +56,41 @@ class Product implements CategorizableInterface
      */
     private $type;
 
-    public function setCategory(AbstractCategory $category)
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        // TODO: Implement setCategory() method.
+        $this->colors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Set category
+     *
+     * @param AbstractCategory $category
+     *
+     * @return Product
+     */
+    public function setCategory(AbstractCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Product\Category
+     */
     public function getCategory()
     {
-        // TODO: Implement getCategory() method.
+        return $this->category;
+    }
+
+    public function __toString(): string
+    {
+        return $this->id;
     }
 }

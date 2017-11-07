@@ -39,7 +39,9 @@
 
         </div>
         <!-- Content -->
-        {% block content %}{% endblock %}
+        {% block content %}
+
+        {% endblock %}
 
 
         <!-- Footer -->
@@ -87,7 +89,9 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    <script src="{{ asset("assets/js/jquery.min.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 {% endblock %}
 </body>
 </html>

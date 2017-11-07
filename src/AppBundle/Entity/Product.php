@@ -36,7 +36,12 @@ class Product implements CategorizableInterface
     private $ref;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product\Category")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product\Image", mappedBy="product", cascade="all", orphanRemoval=true)
+     */
+    private $images;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product\Category", inversedBy="products")
      * @ORM\JoinColumn(onDelete="RESTRICT")
      */
     private $category;
@@ -57,6 +62,31 @@ class Product implements CategorizableInterface
     public function __construct()
     {
         $this->colors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set category
+     *
+     * @param AbstractCategory $category
+     *
+     * @return Product
+     */
+    public function setCategory(AbstractCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Product\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     public function __toString(): string
@@ -171,45 +201,68 @@ class Product implements CategorizableInterface
     }
 
     /**
-     * Set category
+     * Add image
      *
-     * @param AbstractCategory $category
+     * @param \AppBundle\Entity\Product\Image $image
      *
      * @return Product
      */
-    public function setCategory(AbstractCategory $category = null)
+    public function addImage(\AppBundle\Entity\Product\Image $image)
     {
-        $this->category = $category;
+        $this->images[] = $image;
+        $image->setProduct($this);
 
         return $this;
     }
 
     /**
-     * Get category
+     * Remove image
      *
-     * @return \AppBundle\Entity\Product\Category
+     * @param \AppBundle\Entity\Product\Image $image
      */
-    public function getCategory()
+    public function removeImage(\AppBundle\Entity\Product\Image $image)
     {
-        return $this->category;
+        $this->images->removeElement($image);
     }
 
     /**
-     * Set colors
+     * Get images
      *
-     * @param \AppBundle\Entity\Color $colors
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add color
+     *
+     * @param \AppBundle\Entity\Color $color
      *
      * @return Product
      */
-    public function setColors(\AppBundle\Entity\Color $colors = null)
+    public function addColor(\AppBundle\Entity\Color $color)
     {
-        $this->colors = $colors;
+        $this->colors[] = $color;
 
         return $this;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * Remove color
+     *
+     * @param \AppBundle\Entity\Color $color
+     */
+    public function removeColor(\AppBundle\Entity\Color $color)
+    {
+        $this->colors->removeElement($color);
+    }
+
+    /**
+     * Get colors
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getColors()
     {

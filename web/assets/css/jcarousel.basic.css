@@ -1,0 +1,115 @@
+.jcarousel-wrapper {
+    margin: 5px;
+    width: 280px;
+    height: 280px;
+    background-color: #ffffff;
+}
+
+/** Carousel **/
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.jcarousel img {
+    min-width: 280px;
+    max-width: 280px;
+}
+
+.jcarousel div {
+    width: 20000em;
+    position: relative;
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.jcarousel p {
+    float: left;
+    width: 280px;
+    height: 280px;
+}
+
+/** Carousel Controls **/
+
+.jcarousel-control-prev,
+.jcarousel-control-next {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #4E443C;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    font: 24px/27px Arial, sans-serif;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    opacity: .5;
+}
+
+.jcarousel-control-prev {
+    left: 10%;
+}
+
+.jcarousel-control-next {
+    right: 10%;
+}
+
+.jcarousel-control-prev:hover span,
+.jcarousel-control-next:hover span {
+    display: block;
+}
+
+.jcarousel-control-prev.inactive,
+.jcarousel-control-next.inactive,
+.jcarousel-control-prev:hover.inactive,
+.jcarousel-control-next:hover.inactive {
+    opacity: .2;
+    cursor: default;
+}
+
+.jcarousel-control-prev:hover,
+.jcarousel-control-next:hover {
+    opacity: 1;
+    color: #ffffff;
+}
+
+/** Carousel Pagination **/
+
+.jcarousel-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+}
+
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 11px;
+    line-height: 14px;
+    min-width: 14px;
+
+    background: #fff;
+    color: #4E443C;
+    border-radius: 14px;
+    padding: 3px;
+    text-align: center;
+
+    margin-right: 2px;
+
+    opacity: .75;
+}
+
+.jcarousel-pagination a.active {
+    background: #4E443C;
+    color: #fff;
+    opacity: 1;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+}

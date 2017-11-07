@@ -2,10 +2,12 @@
 
 namespace AdminBundle\Form;
 
+use AdminBundle\Form\Product\ImageType;
 use AppBundle\Entity\Color;
 use AppBundle\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,6 +34,13 @@ class ProductType extends AbstractType
                 'class' => Color::class,
                 'choice_label' => 'name',
                 'multiple' => true
+            ))
+            ->add('images', CollectionType::class, array(
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false
             ))
             ->add('submit', SubmitType::class)
         ;

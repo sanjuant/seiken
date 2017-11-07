@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jcarousel.basic.css') }}">
+{% endblock %}
+
 {% block content %}
-    <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable grid container">
-            <div class="row">
-                <div class="ui special cards">
-                    {% for product in products %}
-                        {% include '@App/Shop/cart-item.html.twig' %}
-                    {% endfor %}
+    {% for category in categories %}
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable centered grid container">
+                <h3 class="ui red header">{{ category.label | upper }}</h3>
+                <div class="row">
+                    <div class="ui special cards">
+                        {% for product in category.products %}
+                            {% include '@App/Shop/cart-item.html.twig' %}
+                        {% endfor %}
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
+    {% endfor %}
 
     {% if product is defined %}
         <div class="ui modal">
@@ -19,30 +28,57 @@
                 <p>{{ product.name }}</p>
             </div>
             <div class="image content">
-                <div class="ui medium image">
-                    <img src="{{ asset('images/boutique/thumbnails/Blitz-Pro-Boxing-Gloves-Blue.jpg') }}"/>
+                <div class="ui image">
+                    <div class="jcarousel-wrapper">
+                        <div class="jcarousel">
+                            <div>
+                                {% for img in product.images %}
+                                    <p><img src="{{ asset('images/products/' ~img.name) }}" alt=" "/></p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+                    </div>
+                    {#{% for img in product.images %}#}
+                    {#<img src="{{ asset('images/products/' ~img.name) }}" alt=" "/>#}
+                    {#{% endfor %}#}
                 </div>
                 <div class="block">
                     <div class="description">
                         <div class="ui header">Description</div>
                         <p>{{ product.description }}</p>
                     </div>
-                    {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
-                    {{ form_widget(form) }}
-                    {{ form_end(form) }}
+                    <div class="form">
+                        {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>
     {% endif %}
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('assets/js/jquery.jcarousel.js') }}"></script>
+    <script src="{{ asset('assets/js/jcarousel.basic.js') }}"></script>
 
-    {% if product is defined %}
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.ui.modal').modal('show');
-            });
-        </script>
-    {% endif %}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% if product is defined %}
+            $('.ui.modal').modal('show');
+            {% endif %}
+//            $('.slider').sss({
+//                slideShow: false, // Set to false to prevent SSS from automatically animating.
+//                startOn: 0, // Slide to display first. Uses array notation (0 = first slide).
+//                transition: 400, // Length (in milliseconds) of the fade transition.
+//                speed: 10000, // Slideshow speed in milliseconds.
+//                showNav: true // Set to false to hide navigation arrows.
+//            });
+            $('.jcarousel').jcarousel();
+        });
+    </script>
 {% endblock %}

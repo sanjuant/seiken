@@ -19,12 +19,12 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
-        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+        $categories = $this->getDoctrine()->getRepository(Product\Category::class)->findAllWithProducts();
 
         return $this->render('@App/Shop/index.html.twig', array(
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
-            'products' => $products,
+            'categories' => $categories,
         ));
     }
 
@@ -36,7 +36,7 @@ class ShopController extends Controller
      */
     public function viewAction(Product $product, Request $request)
     {
-        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+        $categories = $this->getDoctrine()->getRepository(Product\Category::class)->findAllWithProducts();
 
         $cartItem = new CartItem();
         $cartItem->setProduct($product);
@@ -55,7 +55,7 @@ class ShopController extends Controller
             'img' => 'assets/img/boutique.jpg',
             'position' => 'center',
             'cartItem' => $cartItem,
-            'products' => $products,
+            'categories' => $categories,
             'product' => $product,
             'form' => $form->createView()
         ));

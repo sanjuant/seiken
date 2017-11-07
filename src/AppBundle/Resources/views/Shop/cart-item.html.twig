@@ -1,20 +1,16 @@
-<div class="card">
-    <div class="blurring dimmable image">
-        <div class="ui dimmer">
-            <div class="content">
-                <div class="center">
-                    <a class="ui inverted button" href="{{ path('boutique.product', { 'id': product.id }) }}">Show
-                        Description</a>
+<div class="ui centered card">
+    <div class="image">
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <div>
+                    {% for img in product.images %}
+                        <p><img src="{{ asset('images/products/' ~img.name) }}" alt=" "/></p>
+                    {% endfor %}
                 </div>
             </div>
+            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
         </div>
-        {#<div class="slider">#}
-        <img src="{{ asset('images/boutique/thumbnails/Blitz-Pro-Boxing-Gloves-Blue.jpg') }}"/>
-        {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Blue.jpg"/>#}
-        {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-Red.jpg"/>#}
-        {#<img src="./images/boutique/k-contact/thumbnails/Standard-Leather-Boxing-Gloves-White.jpg"/>#}
-        {#{{ dump(product) }}#}
-        {#</div>#}
     </div>
     <div class="content">
         <div class="header center aligned">{{ product.name }}</div>
