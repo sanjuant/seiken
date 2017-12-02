@@ -78,21 +78,6 @@ class DefaultController extends Controller
         ));
     }
 
-//    /**
-//     * @Route("/boutique", name="boutique")
-//     * @Method("GET")
-//     */
-//    public function boutiqueAction()
-//    {
-//        $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-//
-//        return $this->render('@App/Default/boutique.html.twig', array(
-//            'img' => 'assets/img/boutique.jpg',
-//            'position' => 'center',
-//            'products' => $products
-//        ));
-//    }
-
     /**
      * @Route("/contact", name="contact")
      */
@@ -114,7 +99,7 @@ class DefaultController extends Controller
         $form = $this->createForm(MemberType::class, $member);
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());
             $em->flush();
