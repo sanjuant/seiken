@@ -6,6 +6,7 @@ namespace AppBundle\Entity;
 use AppBundle\Model\CategorizableInterface;
 use AppBundle\Traits\Id;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
@@ -34,6 +35,12 @@ class Post implements CategorizableInterface
      * @ORM\Column(type="text")
      */
     private $content;
+
+    /**
+     * @Gedmo\Slug(fields={"title"}, updatable=false)
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="post")
@@ -148,6 +155,27 @@ class Post implements CategorizableInterface
     public function getContent()
     {
         return $this->content;
+    }
+
+
+    /**
+     * @param mixed $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

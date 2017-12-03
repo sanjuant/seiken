@@ -1,20 +1,22 @@
 <div class="row">
     <h3 class="ui header">
-        <a href="{{ path('news.post', {'id': post.id}) }}" class="h3 title">{{ post.title }}</a>
+        <a href="{{ path('news.post', {'slug': post.slug}) }}" class="h3 title">{{ post.title }}</a>
         <div class="sub header">
         <span class="post-auhor-date">{{ post.author }}, <a
-                    href="{{ path('news.post', {'id': post.id}) }}">le {{ post.date|localizeddate("medium", "none", null, null, "cccc d LLLL yyyy")|title }}</a></span>
+                    href="{{ path('news.post', {'slug': post.slug}) }}">le {{ post.date|localizeddate("medium", "none", null, null, "cccc d LLLL yyyy")|title }}</a></span>
             -
-            <span class="post-comment"><a href="{{ path('news.post', {'id': post.id}) }}#comments"><i
+            <span class="post-comment"><a href="{{ path('news.post', {'slug': post.slug}) }}#comments"><i
                             class="comment outline icon"></i> {{ post.comments|length }}</a></span>
-            -
-            <span class="post-category"><i class="tag icon"></i><a href="#">{{ post.category }}</a></span>
+            {% if post.category is not null %}
+                -
+                <span class="post-category"><i class="tag icon"></i><a href="#">{{ post.category }}</a></span>
+            {% endif %}
         </div>
     </h3>
 
     {#<img class="ui small left floated rounded image" src="./images/news1.jpg">#}
     <p>{{ post.content }}</p>
-    {% if app.request.pathInfo is not same as('/news/' ~ post.id) %}
-        <a href="{{ path('news.post', {'id': post.id}) }}" class="ui large button">Lire la suite</a>
+    {% if app.request.pathInfo is not same as('/news/' ~ post.slug) %}
+        <a href="{{ path('news.post', {'slug': post.slug}) }}" class="ui large button">Lire la suite</a>
     {% endif %}
 </div>

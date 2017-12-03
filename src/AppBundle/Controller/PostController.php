@@ -50,14 +50,14 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="news.post")
-     * @param $id
+     * @Route("/{slug}", name="news.post")
+     * @param $slug
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction($id, Request $request)
+    public function viewAction($slug, Request $request)
     {
-        $post = $this->getDoctrine()->getRepository(Post::class)->findOneWithComments($id);
+        $post = $this->getDoctrine()->getRepository(Post::class)->findOneWithComments($slug);
 
         $comment = new Comment();
         $comment->setPost($post);
@@ -70,7 +70,7 @@ class PostController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            return $this->redirectToRoute('news.post', array('id' => $id));
+            return $this->redirectToRoute('news.post', array('slug' => $slug));
         }
 
         return $this->render('@App/News/view.html.twig', array(

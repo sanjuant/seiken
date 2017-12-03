@@ -25,14 +25,14 @@ class PostRepository extends EntityRepository
         return new Paginator($query, true);
     }
 
-    public function findOneWithComments($id)
+    public function findOneWithComments($slug)
     {
         $qb = $this->createQueryBuilder('p')
                    ->select('c', 'p')
                    ->leftJoin("p.comments", 'c')
-                   ->where("p.id = :id")
+                   ->where("p.slug = :slug")
                    ->orderBy("c.date", 'DESC')
-                   ->setParameter("id", $id)
+                   ->setParameter("slug", $slug)
         ;
 
         return $qb->getQuery()->getOneOrNullResult();
