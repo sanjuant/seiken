@@ -30,9 +30,12 @@ class DefaultController extends Controller
         $posts = $this
             ->getDoctrine()
             ->getRepository(Post::class)
-            ->findBy(array(), array(
-                'date' => 'DESC'
-            ))
+            ->findBy(
+                array(),
+                array('date' => 'DESC'),
+                3,
+                0
+            )
         ;
 
         return $this->render('@App/Default/accueil.html.twig', array(

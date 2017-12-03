@@ -3,10 +3,12 @@
 {% block content %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable text container">
+            {{ dump(posts) }}
             {% for post in posts %}
                 {% include '@App/News/post.html.twig' %}
-                {% if not loop.last %}
-                    <div class="ui section divider"></div>{% endif %}
+                {% if loop.index is not same as(posts.query.maxResults) %}
+                    <div class="ui section divider"></div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
