@@ -36,40 +36,40 @@
 
 <div class="container">
     <div class="header clearfix">
-        {#{% if app.user is not null %}#}
-        <p class="pull-right">app.user.username|capitalize > <a href="#">Déconnexion</a>
-        </p>
-        <div class="clearfix"></div>
-        <hr/>
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" {% if 'post.category' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.post.categories") }}">Catégories Post</a>
-                </li>
-                <li role="presentation" {% if 'product.category' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.product.categories") }}">Catégories Produit</a>
-                </li>
-                <li role="presentation" {% if 'post' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.posts") }}">Posts</a>
-                </li>
-                <li role="presentation" {% if 'product' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.products") }}">Produits</a>
-                </li>
-                <li role="presentation" {% if 'type' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.product.types") }}">Types</a>
-                </li>
-                <li role="presentation" {% if 'product.color' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.product.colors") }}">Colors</a>
-                </li>
-                <li role="presentation" {% if 'comment' is same as(module) %}class="active"{% endif %}>
-                    <a href="#">Commentaires</a>
-                </li>
-                <li role="presentation" {% if 'order' is same as(module) %}class="active"{% endif %}>
-                    <a href="{{ path("admin.orders") }}">Commandes</a>
-                </li>
-            </ul>
-        </nav>
-        {#{% endif %}#}
+        {% if app.user is not null %}
+            <p class="pull-right">{{ app.user.username|capitalize }} > <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+            </p>
+            <div class="clearfix"></div>
+            <hr/>
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" {% if 'post.category' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.post.categories") }}">Catégories Post</a>
+                    </li>
+                    <li role="presentation" {% if 'product.category' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.product.categories") }}">Catégories Produit</a>
+                    </li>
+                    <li role="presentation" {% if 'post' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.posts") }}">Posts</a>
+                    </li>
+                    <li role="presentation" {% if 'product' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.products") }}">Produits</a>
+                    </li>
+                    <li role="presentation" {% if 'type' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.product.types") }}">Types</a>
+                    </li>
+                    <li role="presentation" {% if 'product.color' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.product.colors") }}">Colors</a>
+                    </li>
+                    <li role="presentation" {% if 'comment' is same as(module) %}class="active"{% endif %}>
+                        <a href="#">Commentaires</a>
+                    </li>
+                    <li role="presentation" {% if 'order' is same as(module) %}class="active"{% endif %}>
+                        <a href="{{ path("admin.orders") }}">Commandes</a>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
         <h3 class="text-muted"><a href="{{ path('admin.index') }}">Adminator</a></h3>
     </div>
 

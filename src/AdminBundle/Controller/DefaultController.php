@@ -5,12 +5,15 @@ namespace AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * @Route("/admin")
+ */
 class DefaultController extends Controller
 {
     public $module = "admin";
 
     /**
-     * @Route("/admin", name="admin.index")
+     * @Route("/", name="admin.index")
      */
     public function indexAction()
     {
