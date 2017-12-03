@@ -8,23 +8,42 @@ use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/news")
  */
-class NewsController extends Controller
+class PostController extends Controller
 {
     /**
-     * @Route("", name="news")
+     * @Route("/{page}", name="news", requirements={"page": "\d+"})
+     * @param $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction($page = 1)
     {
+        if ($page < 1) {
+            // We trigger a NotFoundHttpException exception, this will display
+            // A 404 error page
+            throw new NotFoundHttpException('Page "' . $page . '" inexistante.');
+        }
 
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findAllWithComments();
+        // We define number of post per page
+        $nbPerPage = 5;
 
+        // We're getting the post list
+        $posts = $this->getDoctrine()
+                      ->getRepository(Post::class)
+                      ->findAllWithComments($page, $nbPerPage)
+        ;
+
+        // We calculate the total number of pages with the count ($Posts) which returns the total number of posts
+        $nbPages = ceil(count($posts) / $nbPerPage);
 
         return $this->render('@App/News/news.html.twig', array(
             'posts' => $posts,
+            'nbPages' => $nbPages,
+            'page' => $page,
             'img' => 'assets/img/news.jpg',
             'position' => 'center'
         ));

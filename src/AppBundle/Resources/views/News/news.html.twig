@@ -11,16 +11,15 @@
         </div>
     </div>
 
-
-    <div class="ui vertical stripe segment center aligned" id="pagination">
-        <div class="ui center aligned pagination menu">
-            <a class="active item">1</a>
-            <a class="item">2</a>
-            <a class="item">3</a>
-            <div class="disabled item">...</div>
-            <a class="item">10</a>
-            <a class="item">11</a>
-            <a class="item">12</a>
+    {% if nbPages > 1 %}
+        <div class="ui vertical stripe segment center aligned" id="pagination">
+            <div class="ui center aligned pagination menu">
+                {% for p in range(1, nbPages) %}
+                    <a class="{% if p == page %}active{% endif %} item"
+                       href="{{ path('news', {'page': p}) }}">{{ p }}</a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% endif %}
+
 {% endblock %}
