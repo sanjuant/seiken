@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +19,7 @@ class PostType extends AbstractType
             ->add('date')
             ->add('title')
             ->add('author')
-            ->add('content')
+            ->add('content', CKEditorType::class)
             ->add('category')
             ->add('submit', SubmitType::class)
         ;
