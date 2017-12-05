@@ -15,8 +15,13 @@
     </h3>
 
     {#<img class="ui small left floated rounded image" src="./images/news1.jpg">#}
-    <p>{{ post.content|raw }}</p>
+
     {% if app.request.pathInfo is not same as('/news/' ~ post.slug) %}
-        <a href="{{ path('news.post', {'slug': post.slug}) }}" class="ui large button">Lire la suite</a>
+        <p>{{ post.content| substrws(300) | raw }}</p>
+        {% if istrunc(post.content, 300) %}
+            <a href="{{ path('news.post', {'slug': post.slug}) }}" class="ui large button">Lire la suite</a>
+        {% endif %}
+    {% else %}
+        <p>{{ post.content | raw }}</p>
     {% endif %}
 </div>

@@ -7,3 +7,13 @@ services:
   app.cart:
     class: AppBundle\Shop\Cart
     arguments: ["@app.session.storage"]
+
+  twig.substrws.extension:
+    class: AppBundle\Twig\substrwsExtension
+    tags:
+      - { name: twig.extension }
+
+  twig.istrunc.extension:
+    class: AppBundle\Twig\isTruncExtensions
+    tags:
+      - { name: twig.extension }

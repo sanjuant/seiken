@@ -68,6 +68,7 @@ a.h3.title:hover {
 
 .ui.vertical.stripe p {
     font-size: 1.33em;
+    word-wrap: break-word;
 }
 
 .ui.vertical.stripe .horizontal.divider {
