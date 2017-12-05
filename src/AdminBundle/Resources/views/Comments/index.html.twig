@@ -24,12 +24,6 @@
                     <td>{{ comment.message }}</td>
                     <td>{{ comment.date|date("d-m-Y", "Europe/Paris") }}</td>
                     <td>
-                        <div class="btn-group pull-right" role="group">
-                            <ul class="dropdown-menu ">
-                                <li><a href="{{ path("admin.comment.delete", {"id": comment.id}) }}"><i
-                                                class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a></li>
-                            </ul>
-                        </div>
                         <small><a class="btn btn-sm btn-danger pull-right"
                                   href="{{ path("admin.comment.delete", {"id": comment.id}) }}">Supprimer</a></small>
                     </td>
