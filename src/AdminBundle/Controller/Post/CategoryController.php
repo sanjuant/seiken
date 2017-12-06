@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CategoryController extends Controller
 {
-    public $module = "post.category";
+    public $module = "news";
 
     /**
      * @Route("/categories", name="admin.post.categories")

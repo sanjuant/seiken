@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PostController extends Controller
 {
-    public $module = "post";
+    public $module = "news";
 
     /**
      * @Route("/posts", name="admin.posts")

@@ -3,9 +3,15 @@
 {% block content %}
     <h3>Liste des categories
         <small>
-            <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.' ~ module ~'.add') }}">
-                <i class="glyphicon glyphicon-plus"></i> Ajouter
-            </a>
+            {% if module is same as("news") %}
+                <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.post.category.add') }}">
+                    <i class="glyphicon glyphicon-plus"></i> Ajouter
+                </a>
+            {% elseif module is same as("boutique") %}
+                <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.product.category.add') }}">
+                    <i class="glyphicon glyphicon-plus"></i> Ajouter
+                </a>
+            {% endif %}
         </small>
     </h3>
     <hr/>
@@ -33,12 +39,22 @@
                             </button>
                             <ul class="dropdown-menu ">
                                 <li>
-                                    <a href="{{ path('admin.' ~ module ~'.edit', {"id": category.id}) }}">
-                                        <i class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a>
+                                    {% if module is same as("news") %}
+                                        <a href="{{ path('admin.post.category.edit', {"id": category.id}) }}">
+                                            <i class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a>
+                                    {% elseif module is same as("boutique") %}
+                                        <a href="{{ path('admin.product.category.edit', {"id": category.id}) }}">
+                                            <i class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a>
+                                    {% endif %}
                                 </li>
                                 <li>
-                                    <a href="{{ path('admin.' ~ module ~'.delete', {"id": category.id}) }}">
-                                        <i class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a>
+                                    {% if module is same as("news") %}
+                                        <a href="{{ path('admin.post.category.delete', {"id": category.id}) }}">
+                                            <i class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a>
+                                    {% elseif module is same as("boutique") %}
+                                        <a href="{{ path('admin.product.category.delete', {"id": category.id}) }}">
+                                            <i class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </div>

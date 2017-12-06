@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CategoryController extends Controller
 {
-    public $module = "product.category";
+    public $module = "boutique";
 
     /**
      * @Route("/categories", name="admin.product.categories")

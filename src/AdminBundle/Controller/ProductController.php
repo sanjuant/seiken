@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProductController extends Controller
 {
-    public $module = "product";
+    public $module = "boutique";
 
     /**
      * @Route("/products", name="admin.products")

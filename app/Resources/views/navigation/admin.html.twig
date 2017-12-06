@@ -1,0 +1,56 @@
+<nav>
+    <ul class="nav nav-pills pull-right">
+        <li class="dropdown">
+            <button class="btn btn-{%- if 'news' is same as(module) -%}primary{%- else -%}default{%- endif %} dropdown-toggle"
+                    type="button" id="dropdownMenuNews" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                News
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuNews">
+                <li><a href="{{ path("admin.post.categories") }}">Catégories</a></li>
+                <li><a href="{{ path("admin.posts") }}">Posts</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <button class="btn btn-{%- if 'boutique' is same as(module) -%}primary{%- else -%}default{%- endif %} dropdown-toggle"
+                    type="button" id="dropdownMenuBoutique" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                Boutique
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuBoutique">
+                <li><a href="{{ path("admin.product.categories") }}">Catégories</a></li>
+                <li><a href="{{ path("admin.product.types") }}">Types</a></li>
+                <li><a href="{{ path("admin.product.colors") }}">Couleurs</a></li>
+                <li><a href="{{ path("admin.products") }}">Produits</a></li>
+            </ul>
+        </li>
+
+        {#<li role="presentation" {% if 'post.category' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="{{ path("admin.post.categories") }}">Catégories Post</a>#}
+        {#</li>#}
+        {#<li role="presentation" {% if 'product.category' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="{{ path("admin.product.categories") }}">Catégories Produit</a>#}
+        {#</li>#}
+        {#<li role="presentation" {% if 'post' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="{{ path("admin.posts") }}">Posts</a>#}
+        {#</li>#}
+        {#<li role="presentation" {% if 'product' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="{{ path("admin.products") }}">Produits</a>#}
+        {#</li>#}
+        {#<li role="presentation" {% if 'type' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="{{ path("admin.product.types") }}">Types</a>#}
+        {#</li>#}
+        {#<li role="presentation" {% if 'product.color' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="{{ path("admin.product.colors") }}">Colors</a>#}
+        {#</li>#}
+        {#<li role="presentation" {% if 'comment' is same as(module) %}class="active"{% endif %}>#}
+        {#<a href="#">Commentaires</a>#}
+        {#</li>#}
+
+        &nbsp;<a href="{{ path("admin.orders") }}"
+                 class="btn btn btn-{%- if 'order' is same as(module) -%}primary{%- else -%}default{%- endif %} dropdown-toggle">Commandes</a>
+    </ul>
+</nav>

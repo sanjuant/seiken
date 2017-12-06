@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TypeController extends Controller
 {
-    public $module = "type";
+    public $module = "boutique";
 
     /**
      * @Route("/types", name="admin.product.types")

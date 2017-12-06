@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class CommentController extends Controller
 {
-    public $module = "comment";
+    public $module = "boutique";
 
     /**
      * @Route("/comments/{slug}", name="admin.comments")

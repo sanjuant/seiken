@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ColorController extends Controller
 {
-    public $module = "product.color";
+    public $module = "boutique";
 
     /**
      * @Route("/colors", name="admin.product.colors")
