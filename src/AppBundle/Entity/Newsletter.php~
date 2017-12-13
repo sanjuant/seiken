@@ -1,0 +1,24 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use AppBundle\Traits\Id;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="comments")
+ */
+class Newsletter
+{
+    use Id;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     * @Assert\Length(max="255")
+     */
+    private $email;
+}

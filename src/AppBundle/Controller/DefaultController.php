@@ -23,7 +23,6 @@ class DefaultController extends Controller
 
     /**
      * @Route("/accueil", name="accueil")
-     * @Method("GET")
      */
     public function accueilAction()
     {
@@ -47,7 +46,6 @@ class DefaultController extends Controller
 
     /**
      * @Route("/body-karate", name="body-karate")
-     * @Method("GET")
      */
     public function bodyKarateAction()
     {
@@ -59,7 +57,6 @@ class DefaultController extends Controller
 
     /**
      * @Route("/coaching", name="coaching")
-     * @Method("GET")
      */
     public function coachingAction()
     {
@@ -71,7 +68,6 @@ class DefaultController extends Controller
 
     /**
      * @Route("/club", name="club")
-     * @Method("GET")
      */
     public function clubAction()
     {

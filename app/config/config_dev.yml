@@ -9,7 +9,7 @@ framework:
 
 web_profiler:
     toolbar: true
-    intercept_redirects: false
+    intercept_redirects: true
 
 monolog:
     handlers:
@@ -37,5 +37,11 @@ monolog:
         #    type: chromephp
         #    level: info
 
-#swiftmailer:
-#    delivery_addresses: ['me@example.com']
+swiftmailer:
+    transport: gmail
+    username:  'seekcoldgirl@gmail.com'
+    password:  'ro1203bin96'
+    stream_options:
+        ssl:
+            allow_self_signed: true
+            verify_peer: false

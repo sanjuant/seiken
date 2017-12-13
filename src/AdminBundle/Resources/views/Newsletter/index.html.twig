@@ -1,0 +1,49 @@
+{% extends "::base-admin.html.twig" %}
+
+{% block content %}
+
+    <h3>Liste des emails
+        <small><a class="btn btn-sm btn-info pull-right" href="{{ path('admin.newsletter.send') }}"><i
+                        class="glyphicon glyphicon-plus"></i> Envoyer une Newsletter</a></small>
+    </h3>
+    <hr/>
+
+    <table id="table_id" class="table table-striped table-bordered display">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        {%- if newsletters is not null %}
+            <tbody>
+            {% for newsletter in newsletters %}
+                <tr>
+                    <td>{{ newsletter.id }}</td>
+                    <td>{{ newsletter.email }}</td>
+                    <td>
+                        <div class="btn-group pull-right" role="group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li><a href="{{ path("admin.newsletter.delete", {"id": newsletter.id}) }}"><i
+                                                class="glyphicon glyphicon-trash"></i> &nbsp;Delete</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    {% include 'parts/datatables.html.twig' %}
+{% endblock %}

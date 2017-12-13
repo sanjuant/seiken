@@ -17,3 +17,13 @@ services:
     class: AppBundle\Twig\isTruncExtensions
     tags:
       - { name: twig.extension }
+
+  mailer.base:
+    class: AppBundle\Services\Mail\BaseMailer
+
+  mailer.smart:
+    class: AppBundle\Services\Mail\SmartMailer
+    arguments: ['@swiftmailer.mailer']
+
+  app.mailer:
+    alias: mailer.smart
