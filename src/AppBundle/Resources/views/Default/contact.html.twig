@@ -45,6 +45,13 @@
                         </div>
                     </div>
                     {{ form_widget(form) }}
+                    {% for message in app.session.flashbag.get('success') %}
+                        <div class="ui green message">{{ message }}</div>
+                    {% endfor %}
+                    {{ form_widget(form) }}
+                    {% for message in app.session.flashbag.get('error') %}
+                        <div class="ui red message">{{ message }}</div>
+                    {% endfor %}
                     {{ form_end(form) }}
                 </div>
             </div>

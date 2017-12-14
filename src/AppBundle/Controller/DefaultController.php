@@ -89,21 +89,26 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $message = '';
+            try {
+                $data = $form->getData();
+                $message = '';
 
-            foreach ($data as $key => $value) {
-                $message = $message . $key . ' : ' . $value . PHP_EOL;
+                foreach ($data as $key => $value) {
+                    $message = $message . $key . ' : ' . $value . PHP_EOL;
+                }
+
+                $mailer = $this->get('app.mailer');
+                $mailer
+                    ->setObject($data['subject'])
+                    ->setMessage($message)
+                    ->setSender($data['email'])
+                    ->setRecipient('contact@sanjuant.fr')
+                    ->send()
+                ;
+                $request->getSession()->getFlashBag()->add('success', 'L\'email à bien été envoyé');
+            } catch (\Exception $e) {
+                $request->getSession()->getFlashBag()->add('error', 'L\'email n\'à pas été envoyé');
             }
-
-            $mailer = $this->get('app.mailer');
-            $mailer
-                ->setObject($data['subject'])
-                ->setMessage($message)
-                ->setSender($this->getParameter('email_address'))
-                ->setRecipient('contact@sanjuant.fr')
-                ->send()
-            ;
 
             return $this->redirectToRoute('contact');
         }

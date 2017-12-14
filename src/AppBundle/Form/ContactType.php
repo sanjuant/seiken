@@ -46,9 +46,10 @@ class ContactType extends AbstractType
                     'Une Entreprise' => 'entreprise'
                 )))
             ->add('subject', ChoiceType::class, array(
+                'required' => true,
                 'label' => 'Sujet',
                 'multiple' => false,
-                'placeholder' => 'Sélectionnez',
+                'placeholder' => false,
                 'choices' => array(
                     'Inscription' => 'inscription',
                     'Karaté' => 'karate',
