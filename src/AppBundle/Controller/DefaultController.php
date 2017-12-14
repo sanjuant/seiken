@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Product;
+use AppBundle\Form\ContactType;
 use AppBundle\Form\MemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -80,9 +81,35 @@ class DefaultController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
+        $form = $this->createForm(ContactType::class, null, array(
+            'method' => 'POST'
+        ));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $message = '';
+
+            foreach ($data as $key => $value) {
+                $message = $message . $key . ' : ' . $value . PHP_EOL;
+            }
+
+            $mailer = $this->get('app.mailer');
+            $mailer
+                ->setObject($data['subject'])
+                ->setMessage($message)
+                ->setSender($this->getParameter('email_address'))
+                ->setRecipient('contact@sanjuant.fr')
+                ->send()
+            ;
+
+            return $this->redirectToRoute('contact');
+        }
+
         return $this->render('@App/Default/contact.html.twig', array(
+            'form' => $form->createView(),
             'img' => 'assets/img/contact.jpg',
             'position' => 'center'
         ));

@@ -4,11 +4,10 @@
   {{ form_errors(form) }}
   {# Génération manuelle et éclatée : #}
 <div class="field required">
-    {# Affichage des erreurs pour ce champ précis. #}
-    {{ form_errors(form.email) }}
-
     {# Génération de l'input. #}
     {{ form_widget(form.email, {'attr': {'placeholder': 'Entrez votre email'}}) }}
+    {# Affichage des erreurs pour ce champ précis. #}
+    {{ form_errors(form.email) }}
 </div>
 {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
   {{ form_widget(form.envoyer, {'attr': {'class': 'ui button'}}) }}

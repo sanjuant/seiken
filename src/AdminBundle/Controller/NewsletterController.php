@@ -63,22 +63,16 @@ class NewsletterController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            var_dump($data);
-            var_dump($recipient);
 
-            try {
-                // Envoyer un mail au modérateur
-                $mailer = $this->get('app.mailer');
-                $mailer
-                    ->setObject($data['subject'])
-                    ->setMessage($data['content'])
-                    ->setSender($this->getParameter('email_address'))
-                    ->setRecipient($recipient)
-                    ->send()
-                ;
-            } catch (\Exception $e) {
-                var_dump('fuck');
-            }
+            $mailer = $this->get('app.mailer');
+            $mailer
+                ->setObject($data['subject'])
+                ->setMessage($data['content'])
+                ->setSender($this->getParameter('email_address'))
+                ->setRecipient($recipient)
+                ->setContentType('text/html')
+                ->send()
+            ;
 
             return $this->redirectToRoute('admin.newsletters');
         }

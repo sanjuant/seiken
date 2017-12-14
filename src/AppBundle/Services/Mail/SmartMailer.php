@@ -7,7 +7,7 @@ use Swift_Message;
 
 class SmartMailer implements MailerInterface
 {
-    private $sender, $recipient, $object, $message;
+    private $sender, $recipient, $object, $message, $contentType;
 
     private $mailer;
 
@@ -44,6 +44,13 @@ class SmartMailer implements MailerInterface
         return $this;
     }
 
+    public function setContentType(string $contentType = 'text/plain'): MailerInterface
+    {
+        $this->contentType = $contentType;
+
+        return $this;
+    }
+
     public function send(): bool
     {
         $message = Swift_Message::newInstance()
@@ -51,6 +58,7 @@ class SmartMailer implements MailerInterface
                                 ->setFrom($this->sender)
                                 ->setTo($this->recipient)
                                 ->setBody($this->message)
+                                ->setContentType($this->contentType)
         ;
 
         $err = [];
