@@ -70,6 +70,7 @@ class NewsletterController extends Controller
                 ->setMessage($data['content'])
                 ->setSender($this->getParameter('email_address'))
                 ->setRecipient($recipient)
+                ->setContentType('text/html')
                 ->send()
             ;
 

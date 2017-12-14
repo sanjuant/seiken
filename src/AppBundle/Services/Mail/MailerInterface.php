@@ -12,5 +12,7 @@ interface MailerInterface
 
     public function setMessage(string $message): MailerInterface;
 
+    public function setContentType(string $contentType = 'text/plain'): MailerInterface;
+
     public function send(): bool;
 }
