@@ -37,6 +37,14 @@ monolog:
         #    type: chromephp
         #    level: info
 
+parameters:
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: seiken
+    database_user: seikenhosoweb
+    database_password: Pedal0Bal3in3
+
+
 swiftmailer:
     transport: gmail
     username:  'seekcoldgirl@gmail.com'

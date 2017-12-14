@@ -77,7 +77,7 @@ class NewsletterController extends Controller
                     ->send()
                 ;
             } catch (\Exception $e) {
-                var_dump('fuck');
+                $this->createNotFoundException('Erreur');
             }
 
             return $this->redirectToRoute('admin.newsletters');
