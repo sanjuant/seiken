@@ -3,7 +3,7 @@
 {% block content %}
     <h3>Liste des colors
         <small>
-            <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.' ~ module ~'.add') }}">
+            <a class="btn btn-sm btn-info pull-right" href="{{ path('admin.product.color.add') }}">
                 <i class="glyphicon glyphicon-plus"></i> Ajouter
             </a>
         </small>
@@ -33,11 +33,11 @@
                             </button>
                             <ul class="dropdown-menu ">
                                 <li>
-                                    <a href="{{ path('admin.' ~ module ~'.edit', {"id": color.id}) }}">
+                                    <a href="{{ path('admin.product.color.edit', {"id": color.id}) }}">
                                         <i class="glyphicon glyphicon-ok"></i> &nbsp;Editer</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('admin.' ~ module ~'.delete', {"id": color.id}) }}">
+                                    <a href="{{ path('admin.product.color.delete', {"id": color.id}) }}">
                                         <i class="glyphicon glyphicon-remove"></i> &nbsp;Supprimer</a>
                                 </li>
                             </ul>
