@@ -19,6 +19,31 @@
                 </div>
                 <div class="eight wide column">
                     {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+                    <h4 class="ui dividing header">Contactez-Nous</h4>
+                    <div class="two required fields">
+                        <div class="field">
+                            {{ form_label(form.firstname) }}
+                            {{ form_widget(form.firstname) }}
+                            {{ form_errors(form.firstname) }}
+                        </div>
+                        <div class="field">
+                            {{ form_label(form.lastname) }}
+                            {{ form_widget(form.lastname) }}
+                            {{ form_errors(form.lastname) }}
+                        </div>
+                    </div>
+                    <div class="two required fields">
+                        <div class="field">
+                            {{ form_label(form.phone) }}
+                            {{ form_widget(form.phone) }}
+                            {{ form_errors(form.phone) }}
+                        </div>
+                        <div class="field">
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+                    </div>
                     {{ form_widget(form) }}
                     {{ form_end(form) }}
                 </div>
@@ -26,4 +51,24 @@
         </div>
     </div>
 {% endblock %}
-
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function initMap() {
+            var salleDuTrinquet = {lat: 43.664370, lng: -1.395597};
+            var map = new google.maps.Map(document.getElementById('map-area'), {
+                zoom: 13,
+                center: salleDuTrinquet,
+                mapTypeId: google.maps.MapTypeId.ROADMAP, // Type de carte, différentes valeurs possible HYBRID, ROADMAP, SATELLITE, TERRAIN
+                maxZoom: 100,
+                scrollwheel: true
+            });
+            var marker = new google.maps.Marker({
+                position: salleDuTrinquet,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1i20ZDg4B7-io_rQ5I3Khvgp-xJNJbvs&callback=initMap"></script>
+{% endblock %}
