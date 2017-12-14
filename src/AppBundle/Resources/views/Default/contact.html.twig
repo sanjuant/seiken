@@ -18,66 +18,69 @@
                     </div>
                 </div>
                 <div class="eight wide column">
-                    <form class="ui form" action="form.php" method="post">
-                        <h4 class="ui dividing header">Contactez-Nous</h4>
-                        <div class="field">
-                            <div class="two required fields">
-                                <div class="field">
-                                    <label>Prénom</label>
-                                    <input type="text" name="firstname" placeholder="John" required>
-                                </div>
-                                <div class="field">
-                                    <label>Nom</label>
-                                    <input type="text" name="lastname" placeholder="Doe" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="two required fields">
-                                <div class="field">
-                                    <label>Téléphone</label>
-                                    <input type="text" name="phone" placeholder="0684785124" required>
-                                </div>
-                                <div class="field">
-                                    <label>Email</label>
-                                    <input type="text" name="mail" placeholder="adresse@mail.com" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label>Vous êtes</label>
-                            <div class="ui fluid search selection dropdown">
-                                <input type="hidden" name="status">
-                                <i class="dropdown icon"></i>
-                                <div class="default text">Sélectionnez</div>
-                                <div class="menu">
-                                    <div class="item" data-value="particulier">Un Particulier</div>
-                                    <div class="item" data-value="groupe">Un Groupe</div>
-                                    <div class="item" data-value="entreprise">Une Entreprise</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label>Sujet</label>
-                            <div class="ui fluid search selection dropdown">
-                                <input type="hidden" name="subject">
-                                <i class="dropdown icon"></i>
-                                <div class="default text">Sélectionnez</div>
-                                <div class="menu">
-                                    <div class="item" data-value="inscription">Inscription</div>
-                                    <div class="item" data-value="karate">Karaté</div>
-                                    <div class="item" data-value="body-karate">Body Karaté</div>
-                                    <div class="item" data-value="coaching">Coaching</div>
-                                    <div class="item" data-value="renseignement">Demande de renseignement</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label>Message</label>
-                            <textarea name="message" rows="4" required></textarea>
-                        </div>
-                        <input type="submit" name="submit" class="ui button" tabindex="0">
-                    </form>
+                    {#<form class="ui form" action="form.php" method="post">#}
+                    {#<h4 class="ui dividing header">Contactez-Nous</h4>#}
+                    {#<div class="field">#}
+                    {#<div class="two required fields">#}
+                    {#<div class="field">#}
+                    {#<label>Prénom</label>#}
+                    {#<input type="text" name="firstname" placeholder="John" required>#}
+                    {#</div>#}
+                    {#<div class="field">#}
+                    {#<label>Nom</label>#}
+                    {#<input type="text" name="lastname" placeholder="Doe" required>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="field">#}
+                    {#<div class="two required fields">#}
+                    {#<div class="field">#}
+                    {#<label>Téléphone</label>#}
+                    {#<input type="text" name="phone" placeholder="0684785124" required>#}
+                    {#</div>#}
+                    {#<div class="field">#}
+                    {#<label>Email</label>#}
+                    {#<input type="text" name="mail" placeholder="adresse@mail.com" required>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="required field">#}
+                    {#<label>Vous êtes</label>#}
+                    {#<div class="ui fluid search selection dropdown">#}
+                    {#<input type="hidden" name="status">#}
+                    {#<i class="dropdown icon"></i>#}
+                    {#<div class="default text">Sélectionnez</div>#}
+                    {#<div class="menu">#}
+                    {#<div class="item" data-value="particulier">Un Particulier</div>#}
+                    {#<div class="item" data-value="groupe">Un Groupe</div>#}
+                    {#<div class="item" data-value="entreprise">Une Entreprise</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="required field">#}
+                    {#<label>Sujet</label>#}
+                    {#<div class="ui fluid search selection dropdown">#}
+                    {#<input type="hidden" name="subject">#}
+                    {#<i class="dropdown icon"></i>#}
+                    {#<div class="default text">Sélectionnez</div>#}
+                    {#<div class="menu">#}
+                    {#<div class="item" data-value="inscription">Inscription</div>#}
+                    {#<div class="item" data-value="karate">Karaté</div>#}
+                    {#<div class="item" data-value="body-karate">Body Karaté</div>#}
+                    {#<div class="item" data-value="coaching">Coaching</div>#}
+                    {#<div class="item" data-value="renseignement">Demande de renseignement</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="required field">#}
+                    {#<label>Message</label>#}
+                    {#<textarea name="message" rows="4" required></textarea>#}
+                    {#</div>#}
+                    {#<input type="submit" name="submit" class="ui button" tabindex="0">#}
+                    {#</form>#}
+                    {{ form_start(form, {"attr": {"novalidate":"novalidate"}}) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
