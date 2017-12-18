@@ -1,13 +1,23 @@
 <div class="ui vertical inverted sidebar menu">
-    <a class="active item" href="{{ path('accueil') }}">Accueil</a>
-    <!--<a class="item" href="news.html">News</a>-->
-    <a class="item" href="{{ path('kc.jeune-enfant') }}">Karaté Contact Jeune Enfant</a>
-    <a class="item" href="{{ path('kc.enfant') }}">Karaté Contact Enfant</a>
-    <a class="item" href="{{ path('kc.ado-adulte') }}">Karaté Contact Ado et Adulte</a>
-    <a class="item" href="body-karate.html">Body Karaté</a>
-    <a class="item" href="coaching.html">Coaching</a>
-    <!--<a class="item" href="stage.html">Stage</a>-->
-    <a class="item" href="club.html">Le Club</a>
-    <a class="item" href="boutique.html">Boutique</a>
-    <a class="item" href="contact.html">Contact</a>
+    <a class="{% if 'accueil' in app.request.pathInfo %}active{% endif %} item" href="{{ path('accueil') }}">Accueil</a>
+    <a class="{% if 'news' in app.request.pathInfo %}active{% endif %} item" href="{{ path('news') }}">News</a>
+    <a class="{% if 'karate-contact' in app.request.pathInfo %}active{% endif %} item"
+       href="{{ path('kc.jeune-enfant') }}">Karaté Contact Jeune Enfant</a>
+    <a class="{% if 'karate-contact' in app.request.pathInfo %}active{% endif %} item" href="{{ path('kc.enfant') }}">Karaté
+        Contact Enfant</a>
+    <a class="{% if 'karate-contact' in app.request.pathInfo %}active{% endif %} item"
+       href="{{ path('kc.ado-adulte') }}">Karaté Contact Ado et Adulte</a>
+    <a class="{% if 'body-karate' in app.request.pathInfo %}active{% endif %} item" href="{{ path('body-karate') }}">Body
+        Karaté</a>
+    <a class="{% if 'coaching' in app.request.pathInfo %}active{% endif %} item"
+       href="{{ path('coaching') }}">Coaching</a>
+    {#<a class="item" href="stage.html">Stage</a>#}
+    <a class="{% if 'club' in app.request.pathInfo %}active{% endif %} item" href="{{ path('club') }}">Le Club</a>
+    <a class="{% if 'boutique' in app.request.pathInfo %}active{% endif %} item"
+       href="{{ path('boutique') }}">Boutique</a>
+    <a class="{% if 'contact' in app.request.pathInfo %}active{% endif %} item" href="{{ path('contact') }}">Contact</a>
+    {% if app.session.get('cart') is not empty %}
+        <a class="{% if 'cart' in app.request.pathInfo %}active{% endif %} item" href="{{ path('cart') }}">Panier <i
+                    class="cart icon"></i> ({{ app.session.get('cart') | length }})</a>
+    {% endif %}
 </div>
