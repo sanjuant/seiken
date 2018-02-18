@@ -50,7 +50,7 @@ class DefaultController extends Controller
      */
     public function bodyKarateAction()
     {
-        return $this->render('@App/Default/body-karate.html.twig', array(
+        return $this->render(':parts', array(
             'img' => 'assets/img/body-karate.jpg',
             'position' => 'top'
         ));

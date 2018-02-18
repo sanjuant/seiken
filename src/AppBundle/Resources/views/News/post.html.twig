@@ -18,6 +18,8 @@
 
     {% if app.request.pathInfo is not same as('/news/' ~ post.slug) %}
         <p>{{ post.content| substrws(300) | raw }}</p>
+
+        {# Si le texte a été tronquer alors on affiche le bouton afficher la suite #}
         {% if istrunc(post.content, 300) %}
             <a href="{{ path('news.post', {'slug': post.slug}) }}" class="ui large button">Lire la suite</a>
         {% endif %}

@@ -44,55 +44,8 @@
 
         {% endblock %}
 
-
         <!-- Footer -->
-        <div class="ui inverted vertical footer segment">
-            <div class="ui container">
-                <div class="ui stackable inverted stackable grid">
-                    <div class="two wide column">
-                        <h4 class="ui inverted header">A propos</h4>
-                        <div class="ui inverted link list">
-                            <a href="contact.html" class="item">Contactez-Nous</a>
-                            <a href="https://www.facebook.com/groups/seikenhossegor/" class="item">Facebook</a>
-                            <a href="#" class="item">FAQ</a>
-                        </div>
-                    </div>
-                    <div class="three wide column">
-                        <h4 class="ui inverted header">Sponsors</h4>
-                        <div class="ui inverted link list">
-                            <a href="http://www.e-leclerc.com/capbreton" class="item">E.Leclerc Capbreton</a>
-                            <a href="https://www.smefazur.fr/" class="item">Smef Azur</a>
-                            <a href="http://deltaconseil.fr" class="item">Delta Conseil</a>
-                            <a href="http://www.soorts-hossegor.fr/vivre-ici/vie-associative/1113-annuaire-des-associations/93-association-seiken.html"
-                               class="item">Mairie Soorts-Hossegor</a>
-                        </div>
-                    </div>
-                    <div class="three wide column">
-                        <h4 class="ui inverted header">Liens Utiles</h4>
-                        <div class="ui inverted link list">
-                            <a href="http://sites.ffkarate.fr/aquitaine/" class="item">Ligue Aquitaine de Karaté</a>
-                            <a href="http://sites.ffkarate.fr/landes/" class="item">Comité departemantal des Landes
-                                Karaté</a>
-                            <a href="http://www.valera-karatecontact.com/" class="item">Valera Karaté Contact</a>
-                            <a href="http://www.hossegor.fr/fr/commerces-services/detail/seiken-hossegor/" class="item">Office
-                                de Tourisme d'Hossegor</a>
-                        </div>
-                    </div>
-                    <div class="two wide column"></div>
-                    <div class="six wide column">
-                        <h2>Newsletter !!!</h2>
-                        <p>Inscrivez vous a notre newsletter pour être informé des dernières nouveautées.</p>
-                        {{ render(controller("AppBundle:Newsletter:add", {"request" : app.request})) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ui inverted vertical segment">
-            <div class="ui right aligned container">
-                © 2017 Seiken Hossegor - <a href="https://sanjuant.fr">sanjuant.fr</a>
-            </div>
-        </div>
+        {% include':parts:footer.html.twig' %}
     </div>
 {% endblock %}
 {% block javascripts %}

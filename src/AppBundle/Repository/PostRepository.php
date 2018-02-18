@@ -9,19 +9,22 @@ class PostRepository extends EntityRepository
 {
     public function findAllWithComments($page, $nbPerPage)
     {
+        // On creer la requête avec des alias
         $qb = $this->createQueryBuilder('p')
                    ->select('c', 'p')
                    ->leftJoin("p.comments", 'c')
                    ->orderBy('p.date', 'DESC')
         ;
 
+        // On recupère la requête
         $query = $qb->getQuery();
 
-        $query->setFirstResult(($page - 1) * $nbPerPage)// We define the post from which to start the list
-              ->setMaxResults($nbPerPage)// As well as the number of posts to display on a page
+        // On défini le premier résultat, et le nombre de résultat maximum
+        $query->setFirstResult(($page - 1) * $nbPerPage)// Début de la list
+              ->setMaxResults($nbPerPage)// Nombre de résultat afficher
         ;
 
-        // Finally, we return the Paginator object corresponding to the built request
+        // Pour finir on retourne un objet Paginator avec la réquête
         return new Paginator($query, true);
     }
 

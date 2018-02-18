@@ -20,6 +20,7 @@ class PostController extends Controller
      */
     public function indexAction()
     {
+        // On récupère la liste de tout les posts
         // SELECT * FROM posts;
         $posts = $this
             ->getDoctrine()
@@ -27,6 +28,7 @@ class PostController extends Controller
             ->findAll()
         ;
 
+        // On retourne les posts
         return $this->render('@Admin/Post/index.html.twig', array(
             'posts' => $posts
         ));
@@ -37,17 +39,26 @@ class PostController extends Controller
      */
     public function addAction(Request $request)
     {
+        // On creer un objet Post
         $post = new Post();
+        // On défini la date par default sur la date actuelle
         $post->setDate(new \DateTime());
 
+        // On creer le formulaire
         $form = $this->createForm(PostType::class, $post);
+        // On fait le lien Requête <-> Formulaire
+        // À partir de maintenant, la variable $comment contient les valeurs entrées dans le formulaire par le visiteur
         $form->handleRequest($request);
 
+        // On vérifie que le formulaire a été envoyé (POST) et que les valeurs entrées sont correctes
         if ($form->isSubmitted() && $form->isValid()) {
+            // On recupère l'entity manager
             $em = $this->getDoctrine()->getManager();
+            // On persiste les données
             $em->persist($form->getData());
             $em->flush();
 
+            // On redirige vers la liste des posts
             return $this->redirectToRoute('admin.posts');
         }
 
@@ -65,10 +76,13 @@ class PostController extends Controller
      */
     public function editAction(Post $post, Request $request)
     {
+        // On creer le formulaire d'édition en lui passant l'objet Post a modifier
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
+        // On vérifie que le formulaire a été envoyé (POST) et que les valeurs entrées sont correctes
         if ($form->isSubmitted() && $form->isValid()) {
+            // On persiste les données
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin.posts');
@@ -84,7 +98,9 @@ class PostController extends Controller
      */
     public function deleteAction(Post $post)
     {
+        // On récupère l'entity manager
         $em = $this->getDoctrine()->getManager();
+        // On supprime le Post qui à été passé en paramètre
         $em->remove($post);
         $em->flush();
 

@@ -25,15 +25,15 @@ class Product implements CategorizableInterface
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="decimal", precision=2)
-     */
-    private $price;
+        /**
+         * @ORM\Column(type="decimal", precision=2)
+         */
+        private $price;
 
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $ref;
+        /**
+         * @ORM\Column(type="string", length=20)
+         */
+        private $ref;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product\Image", mappedBy="product", cascade="all", orphanRemoval=true)

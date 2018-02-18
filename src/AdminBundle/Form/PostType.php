@@ -42,6 +42,4 @@ class PostType extends AbstractType
     {
         return 'adminbundle_post';
     }
-
-
 }
